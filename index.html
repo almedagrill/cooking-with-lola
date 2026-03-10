@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Lola's Kitchen 🍳</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #FFF3D6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.kitchen {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 16px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 24px;
+  color: #3D2C1E;
+  font-weight: 700;
+}
+
+.score-box {
+  background: #E8725A;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.streak-box {
+  background: #3D2C1E;
+  color: #FFF3D6;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+/* Recipe Card */
+.recipe-card {
+  background: white;
+  border-radius: 16px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 12px rgba(61,44,30,0.08);
+  border: 2px solid #f0e4c8;
+}
+
+.recipe-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #E8725A;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.recipe-name {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 28px;
+  color: #3D2C1E;
+  font-weight: 700;
+}
+
+.recipe-desc {
+  font-size: 13px;
+  color: #8a7560;
+  margin-top: 2px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #f0e4c8;
+  border-radius: 4px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #E8725A, #f4a261);
+  border-radius: 4px;
+  transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  width: 0%;
+}
+
+/* Lola */
+.lola-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+  min-height: 70px;
+}
+
+.lola-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E8725A, #c25a45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(232,114,90,0.3);
+  border: 3px solid white;
+}
+
+.lola-bubble {
+  background: white;
+  border-radius: 16px;
+  border-top-left-radius: 4px;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: #3D2C1E;
+  line-height: 1.4;
+  box-shadow: 0 2px 8px rgba(61,44,30,0.06);
+  flex: 1;
+  transition: transform 0.2s;
+}
+
+.lola-bubble.bounce {
+  animation: bubbleBounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes bubbleBounce {
+  0% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.lola-tagalog {
+  font-weight: 700;
+  color: #E8725A;
+}
+
+/* Kawali (Wok) */
+.kawali-area {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  height: 180px;
+}
+
+.kawali {
+  width: 220px;
+  height: 130px;
+  position: relative;
+}
+
+.kawali-body {
+  width: 220px;
+  height: 100px;
+  background: linear-gradient(180deg, #4a4a4a, #2d2d2d);
+  border-radius: 0 0 110px 110px;
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2), inset 0 -8px 16px rgba(0,0,0,0.3);
+  transition: box-shadow 0.3s;
+}
+
+.kawali-body.active {
+  box-shadow: 0 8px 30px rgba(232,114,90,0.4), inset 0 -8px 16px rgba(0,0,0,0.3);
+}
+
+.kawali-inner {
+  width: 180px;
+  height: 70px;
+  background: linear-gradient(180deg, #3a3a3a, #1a1a1a);
+  border-radius: 0 0 90px 90px;
+  position: absolute;
+  bottom: 8px;
+  left: 20px;
+  overflow: hidden;
+}
+
+.kawali-oil {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 25px;
+  background: linear-gradient(180deg, rgba(218,165,32,0.3), rgba(218,165,32,0.6));
+  border-radius: 0 0 90px 90px;
+}
+
+.kawali-rim {
+  width: 240px;
+  height: 18px;
+  background: linear-gradient(180deg, #666, #4a4a4a);
+  border-radius: 10px 10px 0 0;
+  position: absolute;
+  top: 22px;
+  left: -10px;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.15);
+}
+
+.kawali-handle-l, .kawali-handle-r {
+  position: absolute;
+  top: 26px;
+  width: 28px;
+  height: 12px;
+  background: linear-gradient(180deg, #777, #555);
+  border-radius: 4px;
+}
+.kawali-handle-l { left: -30px; border-radius: 6px 2px 2px 6px; }
+.kawali-handle-r { right: -30px; border-radius: 2px 6px 6px 2px; }
+
+/* Items already in wok */
+.wok-items {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  right: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+  z-index: 2;
+}
+
+.wok-item {
+  font-size: 22px;
+  animation: sizzleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+}
+
+@keyframes sizzleIn {
+  0% { transform: scale(0) rotate(-20deg); opacity: 0; }
+  60% { transform: scale(1.3) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* Steam */
+.steam-container {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 60px;
+  pointer-events: none;
+}
+
+.steam {
+  position: absolute;
+  bottom: 0;
+  width: 8px;
+  height: 8px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  animation: steamRise 2s infinite ease-out;
+  opacity: 0;
+}
+
+.steam:nth-child(1) { left: 20%; animation-delay: 0s; }
+.steam:nth-child(2) { left: 40%; animation-delay: 0.5s; }
+.steam:nth-child(3) { left: 60%; animation-delay: 1s; }
+.steam:nth-child(4) { left: 80%; animation-delay: 1.5s; }
+.steam:nth-child(5) { left: 35%; animation-delay: 0.3s; }
+.steam:nth-child(6) { left: 65%; animation-delay: 0.8s; }
+
+@keyframes steamRise {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  20% { opacity: 0.6; }
+  100% { transform: translateY(-50px) scale(2.5); opacity: 0; }
+}
+
+/* Sizzle sparks */
+.sizzle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ffd700;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sizzleSpark 0.6s ease-out forwards;
+}
+
+@keyframes sizzleSpark {
+  0% { transform: translate(0,0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--sx), var(--sy)) scale(0); opacity: 0; }
+}
+
+/* Drop zone highlight */
+.drop-zone {
+  position: absolute;
+  inset: -15px;
+  border: 3px dashed transparent;
+  border-radius: 20px;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+
+.drop-zone.hover {
+  border-color: #E8725A;
+  background: rgba(232,114,90,0.08);
+}
+
+/* Ingredient Cards */
+.ingredients-label {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 13px;
+  color: #8a7560;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  flex: 1;
+  align-content: start;
+}
+
+.ingredient {
+  background: white;
+  border-radius: 14px;
+  padding: 10px 6px;
+  text-align: center;
+  cursor: grab;
+  box-shadow: 0 2px 8px rgba(61,44,30,0.08);
+  border: 2px solid #f0e4c8;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s, opacity 0.3s;
+  touch-action: none;
+  position: relative;
+}
+
+.ingredient:active { cursor: grabbing; }
+
+.ingredient.correct-ingredient {
+  border-color: #E8725A;
+  background: #FFF8F0;
+}
+
+.ingredient .emoji {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 4px;
+  pointer-events: none;
+}
+
+.ingredient .tagalog {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #3D2C1E;
+  display: block;
+  pointer-events: none;
+}
+
+.ingredient .english {
+  font-size: 10px;
+  color: #8a7560;
+  display: block;
+  pointer-events: none;
+}
+
+.ingredient .speak-hint {
+  font-size: 10px;
+  color: #b89a78;
+  display: block;
+  margin-top: 3px;
+  pointer-events: none;
+  transition: color 0.2s;
+}
+
+.ingredient.speaking {
+  border-color: #E8725A;
+  background: #FFF8F0;
+  animation: speakPulse 0.6s ease;
+}
+
+@keyframes speakPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.ingredient.dragging {
+  opacity: 0.4;
+  transform: scale(0.95);
+}
+
+.ingredient.added {
+  opacity: 0.3;
+  pointer-events: none;
+  border-color: #d4e8d0;
+  background: #f0f8ee;
+}
+
+.ingredient.added::after {
+  content: '✓';
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 14px;
+  color: #5a9e4b;
+  font-weight: 700;
+}
+
+.ingredient.wrong {
+  animation: wrongShake 0.5s;
+  border-color: #e85a5a;
+}
+
+@keyframes wrongShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+}
+
+/* Floating drag clone */
+.drag-clone {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  transition: none;
+  transform: scale(1.12) rotate(-3deg);
+  box-shadow: 0 8px 24px rgba(61,44,30,0.2);
+  border-radius: 14px;
+  background: white;
+  padding: 10px 6px;
+  text-align: center;
+  border: 2px solid #E8725A;
+}
+
+/* Completion overlay */
+.completion-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(61,44,30,0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+
+.completion-overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.completion-card {
+  background: white;
+  border-radius: 24px;
+  padding: 32px;
+  text-align: center;
+  max-width: 340px;
+  width: 90%;
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.completion-overlay.show .completion-card {
+  transform: scale(1);
+}
+
+.completion-emoji {
+  font-size: 64px;
+  margin-bottom: 12px;
+}
+
+.completion-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 28px;
+  color: #3D2C1E;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.completion-subtitle {
+  color: #8a7560;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.completion-words {
+  background: #FFF3D6;
+  border-radius: 12px;
+  padding: 12px;
+  margin: 14px 0;
+  text-align: left;
+}
+
+.completion-words h4 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 12px;
+  color: #E8725A;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.completion-word {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 3px 0;
+  color: #3D2C1E;
+}
+
+.completion-word .tl { font-weight: 700; cursor: pointer; }
+.completion-word .tl:active { color: #E8725A; }
+.completion-word .en { color: #8a7560; }
+
+.sound-toggle {
+  background: white;
+  border: 2px solid #f0e4c8;
+  border-radius: 12px;
+  padding: 5px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: border-color 0.2s, opacity 0.2s;
+}
+.sound-toggle.muted { opacity: 0.4; }
+
+.next-btn {
+  background: linear-gradient(135deg, #E8725A, #d4604a);
+  color: white;
+  border: none;
+  padding: 14px 36px;
+  border-radius: 14px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  box-shadow: 0 4px 14px rgba(232,114,90,0.4);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.next-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 8px rgba(232,114,90,0.3);
+}
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 200;
+  animation: confettiFall var(--duration) ease-in forwards;
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* Start screen */
+.start-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  text-align: center;
+  gap: 16px;
+}
+
+.start-lola {
+  font-size: 80px;
+  margin-bottom: 8px;
+}
+
+.start-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 36px;
+  color: #3D2C1E;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.start-subtitle {
+  color: #8a7560;
+  font-size: 16px;
+  max-width: 280px;
+}
+
+.start-btn {
+  background: linear-gradient(135deg, #E8725A, #d4604a);
+  color: white;
+  border: none;
+  padding: 16px 44px;
+  border-radius: 16px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(232,114,90,0.4);
+  transition: transform 0.15s;
+  margin-top: 8px;
+}
+
+.start-btn:active { transform: scale(0.96); }
+
+.start-dishes {
+  font-size: 14px;
+  color: #b89a78;
+  margin-top: 4px;
+}
+
+/* Fire under wok */
+.fire-container {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+}
+
+.flame {
+  width: 12px;
+  height: 20px;
+  background: linear-gradient(0deg, #ff6600, #ffcc00);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: flicker 0.3s infinite alternate;
+  opacity: 0.8;
+}
+
+.flame:nth-child(2) { animation-delay: 0.1s; height: 26px; width: 14px; }
+.flame:nth-child(3) { animation-delay: 0.15s; }
+.flame:nth-child(4) { animation-delay: 0.05s; height: 22px; }
+.flame:nth-child(5) { animation-delay: 0.2s; }
+
+@keyframes flicker {
+  0% { transform: scaleY(1) scaleX(1); opacity: 0.7; }
+  100% { transform: scaleY(1.15) scaleX(0.9); opacity: 1; }
+}
+
+/* Completion action buttons */
+.completion-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.share-btn {
+  background: #3D2C1E;
+  color: #FFF3D6;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 14px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.share-btn:active { transform: scale(0.96); }
+
+/* Recipe Book */
+.book-btn {
+  background: white;
+  border: 2px solid #f0e4c8;
+  border-radius: 14px;
+  padding: 10px 20px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #3D2C1E;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: transform 0.15s, border-color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.book-btn:hover { border-color: #E8725A; }
+.book-btn:active { transform: scale(0.96); }
+.book-btn .badge {
+  background: #E8725A;
+  color: white;
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+
+.book-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(61,44,30,0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.book-overlay.show { opacity: 1; pointer-events: all; }
+
+.book-card {
+  background: #FFF3D6;
+  border-radius: 24px;
+  padding: 28px;
+  max-width: 400px;
+  width: 92%;
+  max-height: 85vh;
+  overflow-y: auto;
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+.book-overlay.show .book-card { transform: scale(1); }
+
+.book-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.book-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #3D2C1E;
+}
+.book-close {
+  background: white;
+  border: 2px solid #f0e4c8;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-recipe {
+  background: white;
+  border-radius: 16px;
+  border: 2px solid #f0e4c8;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+.book-recipe-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.book-recipe-emoji { font-size: 28px; }
+.book-recipe-name {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #3D2C1E;
+}
+.book-recipe-desc {
+  font-size: 12px;
+  color: #8a7560;
+}
+.book-ingredient {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 5px 8px;
+  transition: background 0.15s;
+}
+.book-ingredient:active { background: #FFF3D6; }
+.book-ingredient .bi-tl { font-weight: 700; color: #3D2C1E; }
+.book-ingredient .bi-en { color: #8a7560; }
+.book-ingredient .bi-speaker { font-size: 11px; color: #b89a78; }
+
+.book-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #8a7560;
+}
+.book-empty-emoji { font-size: 48px; margin-bottom: 12px; display: block; }
+.book-empty-text {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 16px;
+  color: #3D2C1E;
+  font-weight: 600;
+}
+
+.book-locked {
+  opacity: 0.4;
+  border-style: dashed;
+}
+.book-locked-label {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 12px;
+  color: #b89a78;
+  text-align: center;
+  margin-top: 6px;
+}
+
+/* Share card canvas area */
+.share-preview {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(61,44,30,0.7);
+  backdrop-filter: blur(6px);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+}
+.share-preview.show { display: flex; }
+.share-preview canvas {
+  border-radius: 16px;
+  max-width: 90%;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.share-preview-actions {
+  display: flex;
+  gap: 10px;
+}
+.share-preview-actions button {
+  padding: 12px 28px;
+  border-radius: 14px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.15s;
+}
+.share-preview-actions button:active { transform: scale(0.96); }
+.share-save-btn { background: #E8725A; color: white; }
+.share-close-btn { background: white; color: #3D2C1E; }
+</style>
+</head>
+<body>
+
+<div class="kitchen" id="kitchen">
+  <!-- Start Screen -->
+  <div class="start-screen" id="startScreen">
+    <div class="start-lola">👵🏽</div>
+    <div class="start-title">Lola's Kitchen</div>
+    <div class="start-subtitle">Learn Tagalog words by helping Lola cook her favorite Filipino dishes!</div>
+    <button class="start-btn" onclick="startGame()">Magluto tayo!</button>
+    <div class="start-dishes">Let's cook!</div>
+    <button class="book-btn" onclick="openRecipeBook()">📖 Recipe Book <span class="badge" id="bookBadge">0</span></button>
+  </div>
+
+  <!-- Game Screen (hidden initially) -->
+  <div id="gameScreen" style="display:none; flex:1; display:none; flex-direction:column;">
+    <div class="header">
+      <div class="title">Lola's Kitchen</div>
+      <div style="display:flex; align-items:center;">
+        <div class="score-box">⭐ <span id="score">0</span></div>
+        <div class="streak-box" id="streakBox">🔥 0</div>
+        <button class="sound-toggle" id="soundToggle" onclick="toggleSound()" title="Toggle sound">🔊</button>
+        <button class="sound-toggle" onclick="openRecipeBook()" title="Recipe Book">📖</button>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-label">Now Cooking</div>
+      <div class="recipe-name" id="recipeName">Adobo</div>
+      <div class="recipe-desc" id="recipeDesc">A savory soy sauce & vinegar stew</div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+    <div class="lola-section">
+      <div class="lola-avatar">👵🏽</div>
+      <div class="lola-bubble" id="lolaBubble">
+        Halika na, let's cook! Drag the right ingredients into the kawali!
+      </div>
+    </div>
+
+    <div class="kawali-area" id="kawaliArea">
+      <div class="drop-zone" id="dropZone"></div>
+      <div class="kawali">
+        <div class="steam-container" id="steamContainer">
+          <div class="steam"></div><div class="steam"></div><div class="steam"></div>
+          <div class="steam"></div><div class="steam"></div><div class="steam"></div>
+        </div>
+        <div class="kawali-rim"></div>
+        <div class="kawali-body" id="kawaliBody">
+          <div class="kawali-inner">
+            <div class="kawali-oil"></div>
+            <div class="wok-items" id="wokItems"></div>
+          </div>
+        </div>
+        <div class="kawali-handle-l"></div>
+        <div class="kawali-handle-r"></div>
+        <div class="fire-container">
+          <div class="flame"></div><div class="flame"></div><div class="flame"></div>
+          <div class="flame"></div><div class="flame"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ingredients-label">Mga Sangkap · Ingredients</div>
+    <div class="ingredients-grid" id="ingredientsGrid"></div>
+  </div>
+</div>
+
+<!-- Completion Overlay -->
+<div class="completion-overlay" id="completionOverlay">
+  <div class="completion-card">
+    <div class="completion-emoji" id="completionEmoji">🎉</div>
+    <div class="completion-title" id="completionTitle">Masarap!</div>
+    <div class="completion-subtitle" id="completionSubtitle">Delicious! Lola is proud of you.</div>
+    <div class="completion-words" id="completionWords"></div>
+    <div class="completion-actions">
+      <button class="share-btn" onclick="generateShareCard()">📸 Share</button>
+      <button class="next-btn" id="nextBtn" onclick="nextRecipe()">Next Dish →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Recipe Book Overlay -->
+<div class="book-overlay" id="bookOverlay">
+  <div class="book-card">
+    <div class="book-header">
+      <div class="book-title">📖 Lola's Recipe Book</div>
+      <button class="book-close" onclick="closeRecipeBook()">✕</button>
+    </div>
+    <div id="bookContent"></div>
+  </div>
+</div>
+
+<!-- Share Preview -->
+<div class="share-preview" id="sharePreview">
+  <canvas id="shareCanvas" width="540" height="540"></canvas>
+  <div class="share-preview-actions">
+    <button class="share-save-btn" onclick="saveShareCard()">Save Image</button>
+    <button class="share-close-btn" onclick="closeSharePreview()">Close</button>
+  </div>
+</div>
+
+<script>
+const RECIPES = [
+  {
+    name: "Adobo",
+    desc: "A savory soy sauce & vinegar stew",
+    emoji: "🍗",
+    ingredients: [
+      { emoji: "🍗", tagalog: "Manok", english: "Chicken" },
+      { emoji: "🧄", tagalog: "Bawang", english: "Garlic" },
+      { emoji: "🫗", tagalog: "Toyo", english: "Soy sauce" },
+      { emoji: "🍶", tagalog: "Suka", english: "Vinegar" },
+      { emoji: "🍃", tagalog: "Dahon ng Laurel", english: "Bay leaf" },
+    ],
+    distractors: [
+      { emoji: "🍤", tagalog: "Hipon", english: "Shrimp" },
+      { emoji: "🥥", tagalog: "Niyog", english: "Coconut" },
+      { emoji: "🌶️", tagalog: "Sili", english: "Chili" },
+      { emoji: "🍋", tagalog: "Kalamansi", english: "Calamansi" },
+    ],
+    lolaIntro: "Halika na, let's cook adobo! Drag the right ingredients into my kawali!",
+    lolaComplete: "Ang sarap ng adobo mo! Lola is so proud!",
+  },
+  {
+    name: "Sinigang",
+    desc: "A sour tamarind soup with veggies",
+    emoji: "🍲",
+    ingredients: [
+      { emoji: "🐖", tagalog: "Baboy", english: "Pork" },
+      { emoji: "🍅", tagalog: "Kamatis", english: "Tomato" },
+      { emoji: "🧅", tagalog: "Sibuyas", english: "Onion" },
+      { emoji: "🥬", tagalog: "Kangkong", english: "Water spinach" },
+      { emoji: "🫘", tagalog: "Sampalok", english: "Tamarind" },
+    ],
+    distractors: [
+      { emoji: "🧄", tagalog: "Bawang", english: "Garlic" },
+      { emoji: "🫗", tagalog: "Toyo", english: "Soy sauce" },
+      { emoji: "🥥", tagalog: "Niyog", english: "Coconut" },
+      { emoji: "🍗", tagalog: "Manok", english: "Chicken" },
+    ],
+    lolaIntro: "Now we make sinigang! Maasim at masarap — find the right ingredients!",
+    lolaComplete: "Napakasarap! Your sinigang is perfect, anak!",
+  },
+  {
+    name: "Pancit Canton",
+    desc: "Stir-fried egg noodles with veggies",
+    emoji: "🍜",
+    ingredients: [
+      { emoji: "🍜", tagalog: "Pansit", english: "Noodles" },
+      { emoji: "🥕", tagalog: "Karot", english: "Carrot" },
+      { emoji: "🥬", tagalog: "Repolyo", english: "Cabbage" },
+      { emoji: "🍗", tagalog: "Manok", english: "Chicken" },
+      { emoji: "🍋", tagalog: "Kalamansi", english: "Calamansi" },
+    ],
+    distractors: [
+      { emoji: "🐖", tagalog: "Baboy", english: "Pork" },
+      { emoji: "🍶", tagalog: "Suka", english: "Vinegar" },
+      { emoji: "🫘", tagalog: "Sampalok", english: "Tamarind" },
+      { emoji: "🍤", tagalog: "Hipon", english: "Shrimp" },
+    ],
+    lolaIntro: "Pancit Canton time! This one's for long life — pili mo ang tamang sangkap!",
+    lolaComplete: "Magaling ka talaga! Lola's pancit queen!",
+  },
+  {
+    name: "Tinola",
+    desc: "A ginger chicken soup with greens",
+    emoji: "🍵",
+    ingredients: [
+      { emoji: "🍗", tagalog: "Manok", english: "Chicken" },
+      { emoji: "🫚", tagalog: "Luya", english: "Ginger" },
+      { emoji: "🧅", tagalog: "Sibuyas", english: "Onion" },
+      { emoji: "🥬", tagalog: "Dahon ng Sili", english: "Chili leaves" },
+      { emoji: "🫒", tagalog: "Sayote", english: "Chayote" },
+    ],
+    distractors: [
+      { emoji: "🍅", tagalog: "Kamatis", english: "Tomato" },
+      { emoji: "🍶", tagalog: "Suka", english: "Vinegar" },
+      { emoji: "🌶️", tagalog: "Sili", english: "Chili" },
+      { emoji: "🥥", tagalog: "Niyog", english: "Coconut" },
+    ],
+    lolaIntro: "Let's make Tinola! Perfect for rainy days — luya at manok, anak!",
+    lolaComplete: "Sobrang sarap! This Tinola will warm everyone's heart!",
+  },
+  {
+    name: "Kare-Kare",
+    desc: "A rich peanut stew with oxtail",
+    emoji: "🥜",
+    ingredients: [
+      { emoji: "🥩", tagalog: "Buntot ng Baka", english: "Oxtail" },
+      { emoji: "🥜", tagalog: "Mani", english: "Peanut" },
+      { emoji: "🍆", tagalog: "Talong", english: "Eggplant" },
+      { emoji: "🧅", tagalog: "Sibuyas", english: "Onion" },
+      { emoji: "🫘", tagalog: "Sitaw", english: "String beans" },
+    ],
+    distractors: [
+      { emoji: "🍗", tagalog: "Manok", english: "Chicken" },
+      { emoji: "🫚", tagalog: "Luya", english: "Ginger" },
+      { emoji: "🍋", tagalog: "Kalamansi", english: "Calamansi" },
+      { emoji: "🍅", tagalog: "Kamatis", english: "Tomato" },
+    ],
+    lolaIntro: "Kare-Kare! A special fiesta dish — mani at talong, let's go!",
+    lolaComplete: "Ay naku, ang galing mo! This Kare-Kare is fiesta-worthy!",
+  },
+];
+
+const LOLA_CORRECT = [
+  "Tama! That's right, anak!",
+  "Magaling! You're a natural!",
+  "Ayan! Perfect choice!",
+  "Very good! Lola is impressed!",
+  "Ayos! You know your ingredients!",
+  "Ganyan! Just like Lola taught you!",
+  "Husay! Keep going, anak!",
+];
+
+const LOLA_WRONG = [
+  "Ay, hindi 'yan! Try again, anak.",
+  "Naku, mali 'yan! Pick another one.",
+  "Hmm, hindi kasama 'yan sa recipe. Try again!",
+  "Ay sus, wrong one! Look carefully.",
+  "Hindi, anak. That doesn't go in this dish!",
+];
+
+let state = {
+  score: 0,
+  streak: 0,
+  bestStreak: 0,
+  currentRecipe: 0,
+  addedIngredients: [],
+  dragEl: null,
+  dragClone: null,
+  dragOffset: { x: 0, y: 0 },
+};
+
+function startGame() {
+  document.getElementById('startScreen').style.display = 'none';
+  const gs = document.getElementById('gameScreen');
+  gs.style.display = 'flex';
+  gs.style.flexDirection = 'column';
+  loadRecipe(0);
+}
+
+function loadRecipe(index) {
+  state.currentRecipe = index;
+  state.addedIngredients = [];
+  const recipe = RECIPES[index];
+
+  document.getElementById('recipeName').textContent = recipe.name;
+  document.getElementById('recipeDesc').textContent = recipe.desc;
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('wokItems').innerHTML = '';
+  setLola(recipe.lolaIntro);
+  speakLola(recipe.lolaIntro);
+
+  // Shuffle ingredients + distractors
+  const all = [...recipe.ingredients, ...recipe.distractors];
+  shuffle(all);
+
+  const grid = document.getElementById('ingredientsGrid');
+  grid.innerHTML = '';
+  all.forEach((ing, i) => {
+    const el = document.createElement('div');
+    el.className = 'ingredient';
+    const isCorrect = recipe.ingredients.some(r => r.tagalog === ing.tagalog);
+    el.dataset.tagalog = ing.tagalog;
+    el.dataset.correct = isCorrect;
+    el.dataset.english = ing.english;
+    el.innerHTML = `
+      <span class="emoji">${ing.emoji}</span>
+      <span class="tagalog">${ing.tagalog}</span>
+      <span class="english">${ing.english}</span>
+      <span class="speak-hint">tap to hear 🔈</span>
+    `;
+
+    // Touch/mouse events — distinguish tap (pronounce) from drag
+    el.addEventListener('touchstart', onPointerDown, { passive: false });
+    el.addEventListener('mousedown', onPointerDown);
+    grid.appendChild(el);
+  });
+}
+
+// Google Cloud TTS
+const TTS_KEY = 'AIzaSyAXceVvHgvuEQ5SBDrsyMMBRkF5K3fc-ys';
+const TTS_URL = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${TTS_KEY}`;
+
+let soundEnabled = true;
+let currentAudio = null;
+let speechQueue = [];
+let isSpeaking = false;
+
+// Audio cache to avoid repeated API calls for same words
+const audioCache = new Map();
+
+async function googleTTS(text, lang = 'fil-PH', voiceName = 'fil-PH-Wavenet-A', speed = 0.9) {
+  const cacheKey = `${text}_${voiceName}_${speed}`;
+  if (audioCache.has(cacheKey)) return audioCache.get(cacheKey);
+
+  try {
+    const res = await fetch(TTS_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        input: { text },
+        voice: { languageCode: lang, name: voiceName },
+        audioConfig: {
+          audioEncoding: 'MP3',
+          speakingRate: speed,
+          pitch: 1.0,
+        }
+      })
+    });
+    const data = await res.json();
+    if (data.audioContent) {
+      const audioSrc = `data:audio/mp3;base64,${data.audioContent}`;
+      audioCache.set(cacheKey, audioSrc);
+      return audioSrc;
+    }
+  } catch (err) {
+    console.warn('TTS error:', err);
+  }
+  return null;
+}
+
+function playAudio(src) {
+  return new Promise(resolve => {
+    if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+    const audio = new Audio(src);
+    currentAudio = audio;
+    audio.onended = () => { currentAudio = null; resolve(); };
+    audio.onerror = () => { currentAudio = null; resolve(); };
+    audio.play().catch(() => resolve());
+  });
+}
+
+function cancelSpeech() {
+  speechQueue = [];
+  isSpeaking = false;
+  if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+}
+
+async function processQueue() {
+  if (isSpeaking || speechQueue.length === 0) return;
+  isSpeaking = true;
+  const { text, lang, voice, speed } = speechQueue.shift();
+  const src = await googleTTS(text, lang, voice, speed);
+  if (src && soundEnabled) {
+    await playAudio(src);
+  }
+  isSpeaking = false;
+  processQueue();
+}
+
+function queueSpeak(text, lang = 'fil-PH', voice = 'fil-PH-Wavenet-A', speed = 0.9) {
+  if (!soundEnabled) return;
+  speechQueue.push({ text, lang, voice, speed });
+  processQueue();
+}
+
+function speakLola(text) {
+  const clean = text.replace(/<[^>]*>/g, '').replace(/&[^;]+;/g, ' ');
+  cancelSpeech();
+  // Lola speaks in Filipino-accented English (use fil-PH voice for that warm Lola feel)
+  queueSpeak(clean, 'fil-PH', 'fil-PH-Wavenet-A', 0.95);
+}
+
+function pronounceWord(tagalog) {
+  cancelSpeech();
+  queueSpeak(tagalog, 'fil-PH', 'fil-PH-Wavenet-A', 0.78);
+}
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  const btn = document.getElementById('soundToggle');
+  btn.textContent = soundEnabled ? '🔊' : '🔇';
+  btn.classList.toggle('muted', !soundEnabled);
+  if (!soundEnabled) cancelSpeech();
+}
+
+// Distinguish tap (pronounce) from drag
+const TAP_THRESHOLD = 10; // px movement to count as drag
+const TAP_TIME = 250; // ms — under this is a tap
+
+function onPointerDown(e) {
+  e.preventDefault();
+  const el = e.currentTarget;
+  if (el.classList.contains('added')) return;
+
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  const rect = el.getBoundingClientRect();
+
+  state.pointerStart = { x: clientX, y: clientY, time: Date.now(), el };
+  state.isDragging = false;
+  state.dragEl = el;
+  state.dragOffset = { x: clientX - rect.left, y: clientY - rect.top };
+
+  document.addEventListener('touchmove', onPointerMove, { passive: false });
+  document.addEventListener('touchend', onPointerUp);
+  document.addEventListener('mousemove', onPointerMove);
+  document.addEventListener('mouseup', onPointerUp);
+}
+
+function onPointerMove(e) {
+  e.preventDefault();
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+  if (!state.isDragging) {
+    const dx = clientX - state.pointerStart.x;
+    const dy = clientY - state.pointerStart.y;
+    if (Math.sqrt(dx*dx + dy*dy) > TAP_THRESHOLD) {
+      // Start dragging
+      state.isDragging = true;
+      state.dragEl.classList.add('dragging');
+      const rect = state.dragEl.getBoundingClientRect();
+      const clone = state.dragEl.cloneNode(true);
+      // Remove speak hint from clone
+      const hint = clone.querySelector('.speak-hint');
+      if (hint) hint.remove();
+      clone.className = 'drag-clone';
+      clone.style.width = rect.width + 'px';
+      clone.style.left = (clientX - state.dragOffset.x) + 'px';
+      clone.style.top = (clientY - state.dragOffset.y) + 'px';
+      document.body.appendChild(clone);
+      state.dragClone = clone;
+    }
+  }
+
+  if (state.isDragging && state.dragClone) {
+    state.dragClone.style.left = (clientX - state.dragOffset.x) + 'px';
+    state.dragClone.style.top = (clientY - state.dragOffset.y) + 'px';
+
+    const kawaliRect = document.getElementById('kawaliArea').getBoundingClientRect();
+    const isOver = clientX >= kawaliRect.left && clientX <= kawaliRect.right &&
+                   clientY >= kawaliRect.top && clientY <= kawaliRect.bottom;
+    document.getElementById('dropZone').classList.toggle('hover', isOver);
+  }
+}
+
+function onPointerUp(e) {
+  document.removeEventListener('touchmove', onPointerMove);
+  document.removeEventListener('touchend', onPointerUp);
+  document.removeEventListener('mousemove', onPointerMove);
+  document.removeEventListener('mouseup', onPointerUp);
+
+  if (!state.dragEl) return;
+
+  if (!state.isDragging) {
+    // It was a tap — pronounce the word
+    const el = state.dragEl;
+    const tagalog = el.dataset.tagalog;
+    const english = el.dataset.english;
+    el.classList.add('speaking');
+    setTimeout(() => el.classList.remove('speaking'), 600);
+    pronounceWord(tagalog);
+    setLola(`<span class="lola-tagalog">${tagalog}</span> — ${english}`);
+  } else {
+    // It was a drag — handle drop
+    const clientX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+    const clientY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+
+    const kawaliRect = document.getElementById('kawaliArea').getBoundingClientRect();
+    const droppedInKawali = clientX >= kawaliRect.left && clientX <= kawaliRect.right &&
+                            clientY >= kawaliRect.top && clientY <= kawaliRect.bottom;
+
+    state.dragEl.classList.remove('dragging');
+    document.getElementById('dropZone').classList.remove('hover');
+
+    if (droppedInKawali) {
+      handleDrop(state.dragEl);
+    }
+
+    if (state.dragClone) {
+      state.dragClone.remove();
+      state.dragClone = null;
+    }
+  }
+
+  state.dragEl = null;
+  state.isDragging = false;
+}
+
+
+function handleDrop(el) {
+  const recipe = RECIPES[state.currentRecipe];
+  const tagalog = el.dataset.tagalog;
+  const isCorrect = el.dataset.correct === 'true';
+
+  if (isCorrect && !state.addedIngredients.includes(tagalog)) {
+    // Correct!
+    state.addedIngredients.push(tagalog);
+    el.classList.add('added');
+    state.score += 10 + (state.streak * 2);
+    state.streak++;
+    if (state.streak > state.bestStreak) state.bestStreak = state.streak;
+
+    updateScoreDisplay();
+
+    // Add to wok
+    const ing = recipe.ingredients.find(i => i.tagalog === tagalog);
+    const wokItem = document.createElement('span');
+    wokItem.className = 'wok-item';
+    wokItem.textContent = ing.emoji;
+    document.getElementById('wokItems').appendChild(wokItem);
+
+    // Sizzle effect
+    createSizzle();
+    document.getElementById('kawaliBody').classList.add('active');
+    setTimeout(() => document.getElementById('kawaliBody').classList.remove('active'), 500);
+
+    // Progress
+    const pct = (state.addedIngredients.length / recipe.ingredients.length) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+
+    // Lola says something
+    const msg = LOLA_CORRECT[Math.floor(Math.random() * LOLA_CORRECT.length)];
+    const ingName = `<span class="lola-tagalog">${ing.tagalog}</span> (${ing.english})`;
+    setLola(`${msg} ${ingName} — tama!`);
+    speakLola(`${msg} ${ing.tagalog}! Tama!`);
+
+    // Check completion
+    if (state.addedIngredients.length === recipe.ingredients.length) {
+      setTimeout(() => showCompletion(recipe), 800);
+    }
+  } else if (!isCorrect) {
+    // Wrong!
+    el.classList.add('wrong');
+    state.streak = 0;
+    updateScoreDisplay();
+    setTimeout(() => el.classList.remove('wrong'), 500);
+
+    const msg = LOLA_WRONG[Math.floor(Math.random() * LOLA_WRONG.length)];
+    setLola(msg);
+    speakLola(msg);
+  }
+}
+
+function setLola(html) {
+  const bubble = document.getElementById('lolaBubble');
+  bubble.innerHTML = html;
+  bubble.classList.remove('bounce');
+  void bubble.offsetWidth;
+  bubble.classList.add('bounce');
+}
+
+function updateScoreDisplay() {
+  document.getElementById('score').textContent = state.score;
+  document.getElementById('streakBox').textContent = `🔥 ${state.streak}`;
+}
+
+function createSizzle() {
+  const kawali = document.getElementById('kawaliBody');
+  const rect = kawali.getBoundingClientRect();
+  for (let i = 0; i < 8; i++) {
+    const spark = document.createElement('div');
+    spark.className = 'sizzle';
+    const angle = Math.random() * Math.PI * 2;
+    const dist = 20 + Math.random() * 30;
+    spark.style.setProperty('--sx', `${Math.cos(angle) * dist}px`);
+    spark.style.setProperty('--sy', `${Math.sin(angle) * dist - 20}px`);
+    spark.style.left = (rect.left + rect.width / 2 + (Math.random() - 0.5) * 60) + 'px';
+    spark.style.top = (rect.top + 20 + Math.random() * 30) + 'px';
+    spark.style.position = 'fixed';
+    document.body.appendChild(spark);
+    setTimeout(() => spark.remove(), 600);
+  }
+}
+
+function showCompletion(recipe) {
+  saveCompletedRecipe(recipe.name);
+  createConfetti();
+  document.getElementById('completionEmoji').textContent = recipe.emoji;
+  document.getElementById('completionTitle').textContent = `${recipe.name} is Ready!`;
+  document.getElementById('completionSubtitle').textContent = recipe.lolaComplete;
+  speakLola(recipe.lolaComplete);
+
+  const wordsDiv = document.getElementById('completionWords');
+  wordsDiv.innerHTML = `<h4>Words You Learned <span style="font-size:10px;color:#b89a78;text-transform:none;letter-spacing:0">(tap to hear)</span></h4>`;
+  recipe.ingredients.forEach(ing => {
+    const wordEl = document.createElement('div');
+    wordEl.className = 'completion-word';
+    wordEl.innerHTML = `
+      <span class="tl">${ing.emoji} ${ing.tagalog} 🔈</span>
+      <span class="en">${ing.english}</span>
+    `;
+    wordEl.querySelector('.tl').addEventListener('click', () => {
+      pronounceWord(ing.tagalog);
+    });
+    wordsDiv.appendChild(wordEl);
+  });
+
+  const isLast = state.currentRecipe >= RECIPES.length - 1;
+  document.getElementById('nextBtn').textContent = isLast ? "Cook Again! 🔄" : "Next Dish →";
+
+  document.getElementById('completionOverlay').classList.add('show');
+}
+
+function nextRecipe() {
+  document.getElementById('completionOverlay').classList.remove('show');
+  const next = (state.currentRecipe + 1) % RECIPES.length;
+  if (next === 0) {
+    state.score = 0;
+    state.streak = 0;
+    updateScoreDisplay();
+  }
+  setTimeout(() => loadRecipe(next), 300);
+}
+
+function createConfetti() {
+  const colors = ['#E8725A', '#FFF3D6', '#3D2C1E', '#f4a261', '#5a9e4b', '#5a8ee8'];
+  for (let i = 0; i < 40; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti';
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.top = '-10px';
+    el.style.background = colors[Math.floor(Math.random() * colors.length)];
+    el.style.setProperty('--duration', (1.5 + Math.random() * 2) + 's');
+    el.style.width = (5 + Math.random() * 8) + 'px';
+    el.style.height = (5 + Math.random() * 8) + 'px';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 4000);
+  }
+}
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+
+// ===== RECIPE BOOK (localStorage) =====
+function getCompletedRecipes() {
+  try {
+    return JSON.parse(localStorage.getItem('lolasKitchen_completed') || '[]');
+  } catch { return []; }
+}
+
+function saveCompletedRecipe(recipeName) {
+  const completed = getCompletedRecipes();
+  if (!completed.includes(recipeName)) {
+    completed.push(recipeName);
+    localStorage.setItem('lolasKitchen_completed', JSON.stringify(completed));
+  }
+  updateBookBadge();
+}
+
+function updateBookBadge() {
+  const count = getCompletedRecipes().length;
+  const badge = document.getElementById('bookBadge');
+  if (badge) badge.textContent = count;
+}
+
+function openRecipeBook() {
+  const completed = getCompletedRecipes();
+  const content = document.getElementById('bookContent');
+  content.innerHTML = '';
+
+  if (completed.length === 0) {
+    content.innerHTML = `
+      <div class="book-empty">
+        <span class="book-empty-emoji">🍳</span>
+        <div class="book-empty-text">No recipes yet!</div>
+        <p style="color:#8a7560;font-size:13px;margin-top:6px;">Complete a dish to add it to your recipe book.</p>
+      </div>
+    `;
+  } else {
+    RECIPES.forEach(recipe => {
+      const isCompleted = completed.includes(recipe.name);
+      const card = document.createElement('div');
+      card.className = `book-recipe ${isCompleted ? '' : 'book-locked'}`;
+
+      if (isCompleted) {
+        let ingredientsHTML = recipe.ingredients.map(ing =>
+          `<div class="book-ingredient" onclick="pronounceWord('${ing.tagalog.replace(/'/g, "\\'")}')">
+            <span class="bi-tl">${ing.emoji} ${ing.tagalog}</span>
+            <span class="bi-en">${ing.english} <span class="bi-speaker">🔈</span></span>
+          </div>`
+        ).join('');
+
+        card.innerHTML = `
+          <div class="book-recipe-header">
+            <span class="book-recipe-emoji">${recipe.emoji}</span>
+            <div>
+              <div class="book-recipe-name">${recipe.name}</div>
+              <div class="book-recipe-desc">${recipe.desc}</div>
+            </div>
+          </div>
+          ${ingredientsHTML}
+        `;
+      } else {
+        card.innerHTML = `
+          <div class="book-recipe-header">
+            <span class="book-recipe-emoji">🔒</span>
+            <div>
+              <div class="book-recipe-name">${recipe.name}</div>
+              <div class="book-recipe-desc">Cook this dish to unlock!</div>
+            </div>
+          </div>
+        `;
+      }
+      content.appendChild(card);
+    });
+  }
+
+  document.getElementById('bookOverlay').classList.add('show');
+}
+
+function closeRecipeBook() {
+  document.getElementById('bookOverlay').classList.remove('show');
+}
+
+// ===== SHARE CARD (Canvas) =====
+function generateShareCard() {
+  const recipe = RECIPES[state.currentRecipe];
+  const canvas = document.getElementById('shareCanvas');
+  const ctx = canvas.getContext('2d');
+  const W = 540, H = 540;
+
+  // Background
+  ctx.fillStyle = '#FFF3D6';
+  ctx.fillRect(0, 0, W, H);
+
+  // Decorative top bar
+  ctx.fillStyle = '#E8725A';
+  ctx.fillRect(0, 0, W, 8);
+
+  // Title
+  ctx.fillStyle = '#3D2C1E';
+  ctx.font = 'bold 28px Fredoka, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText("Lola's Kitchen", W/2, 50);
+
+  // Dish emoji (big)
+  ctx.font = '72px serif';
+  ctx.fillText(recipe.emoji, W/2, 130);
+
+  // Dish name
+  ctx.fillStyle = '#E8725A';
+  ctx.font = 'bold 36px Fredoka, sans-serif';
+  ctx.fillText(recipe.name, W/2, 175);
+
+  // "I cooked" subtitle
+  ctx.fillStyle = '#8a7560';
+  ctx.font = '16px Nunito, sans-serif';
+  ctx.fillText("I just cooked this & learned these Tagalog words!", W/2, 205);
+
+  // Ingredients card
+  const cardX = 40, cardY = 225, cardW = W - 80, cardH = recipe.ingredients.length * 42 + 24;
+  ctx.fillStyle = 'white';
+  roundRect(ctx, cardX, cardY, cardW, cardH, 16);
+  ctx.fill();
+  ctx.strokeStyle = '#f0e4c8';
+  ctx.lineWidth = 2;
+  roundRect(ctx, cardX, cardY, cardW, cardH, 16);
+  ctx.stroke();
+
+  // Ingredients list
+  recipe.ingredients.forEach((ing, i) => {
+    const y = cardY + 30 + i * 42;
+    ctx.font = '22px serif';
+    ctx.textAlign = 'left';
+    ctx.fillText(ing.emoji, cardX + 20, y);
+
+    ctx.fillStyle = '#3D2C1E';
+    ctx.font = 'bold 17px Fredoka, sans-serif';
+    ctx.fillText(ing.tagalog, cardX + 55, y - 2);
+
+    ctx.fillStyle = '#8a7560';
+    ctx.font = '14px Nunito, sans-serif';
+    ctx.fillText(ing.english, cardX + 55, y + 16);
+
+    ctx.fillStyle = '#3D2C1E';
+  });
+
+  // Score
+  const scoreY = cardY + cardH + 35;
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#E8725A';
+  ctx.font = 'bold 22px Fredoka, sans-serif';
+  ctx.fillText(`⭐ Score: ${state.score}`, W/2, scoreY);
+
+  // Footer / branding
+  ctx.fillStyle = '#b89a78';
+  ctx.font = '14px Nunito, sans-serif';
+  ctx.fillText('Usap — Learn Tagalog with Lola', W/2, H - 30);
+
+  ctx.fillStyle = '#E8725A';
+  ctx.font = 'bold 14px Fredoka, sans-serif';
+  ctx.fillText('usapwithlola.com', W/2, H - 12);
+
+  // Bottom bar
+  ctx.fillStyle = '#E8725A';
+  ctx.fillRect(0, H - 4, W, 4);
+
+  document.getElementById('sharePreview').classList.add('show');
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+function saveShareCard() {
+  const canvas = document.getElementById('shareCanvas');
+
+  // Try native share (mobile) first
+  if (navigator.share && navigator.canShare) {
+    canvas.toBlob(async blob => {
+      const file = new File([blob], 'lolas-kitchen.png', { type: 'image/png' });
+      try {
+        await navigator.share({
+          title: "Lola's Kitchen",
+          text: "I just cooked a dish and learned Tagalog words!",
+          files: [file]
+        });
+      } catch {
+        downloadCanvas(canvas);
+      }
+    });
+  } else {
+    downloadCanvas(canvas);
+  }
+}
+
+function downloadCanvas(canvas) {
+  const link = document.createElement('a');
+  link.download = 'lolas-kitchen.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+function closeSharePreview() {
+  document.getElementById('sharePreview').classList.remove('show');
+}
+
+// Save recipe on completion
+const originalShowCompletion = showCompletion;
+// (already handled inline — see showCompletion override below)
+
+// Init badge on load
+updateBookBadge();
+</script>
+</body>
+</html>
