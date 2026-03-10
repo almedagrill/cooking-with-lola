@@ -124,18 +124,15 @@ body {
   min-height: 70px;
 }
 
-.lola-avatar {
-  width: 52px;
-  height: 52px;
+.lola-avatar-img {
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #E8725A, #c25a45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
+  object-fit: cover;
   flex-shrink: 0;
   box-shadow: 0 3px 10px rgba(232,114,90,0.3);
   border: 3px solid white;
+  transition: opacity 0.2s;
 }
 
 .lola-bubble {
@@ -498,9 +495,16 @@ body {
   transform: scale(1);
 }
 
+.completion-lola-img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 4px;
+}
+
 .completion-emoji {
-  font-size: 64px;
-  margin-bottom: 12px;
+  font-size: 40px;
+  margin-bottom: 8px;
 }
 
 .completion-title {
@@ -605,8 +609,10 @@ body {
   gap: 16px;
 }
 
-.start-lola {
-  font-size: 80px;
+.start-lola-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
   margin-bottom: 8px;
 }
 
@@ -891,7 +897,7 @@ body {
 <div class="kitchen" id="kitchen">
   <!-- Start Screen -->
   <div class="start-screen" id="startScreen">
-    <div class="start-lola">👵🏽</div>
+    <img src="illustrations/lola-face.gif" alt="Lola" class="start-lola-img">
     <div class="start-title">Lola's Kitchen</div>
     <div class="start-subtitle">Learn Tagalog words by helping Lola cook her favorite Filipino dishes!</div>
     <button class="start-btn" onclick="startGame()">Magluto tayo!</button>
@@ -919,7 +925,7 @@ body {
     </div>
 
     <div class="lola-section">
-      <div class="lola-avatar">👵🏽</div>
+      <img src="illustrations/lola-encouraging.png" alt="Lola" class="lola-avatar-img" id="lolaAvatarImg">
       <div class="lola-bubble" id="lolaBubble">
         Halika na, let's cook! Drag the right ingredients into the kawali!
       </div>
@@ -956,6 +962,7 @@ body {
 <!-- Completion Overlay -->
 <div class="completion-overlay" id="completionOverlay">
   <div class="completion-card">
+    <img src="illustrations/lola-happy.png" alt="Lola happy" class="completion-lola-img" id="completionLolaImg">
     <div class="completion-emoji" id="completionEmoji">🎉</div>
     <div class="completion-title" id="completionTitle">Masarap!</div>
     <div class="completion-subtitle" id="completionSubtitle">Delicious! Lola is proud of you.</div>
@@ -1137,7 +1144,7 @@ function loadRecipe(index) {
   document.getElementById('recipeDesc').textContent = recipe.desc;
   document.getElementById('progressFill').style.width = '0%';
   document.getElementById('wokItems').innerHTML = '';
-  setLola(recipe.lolaIntro);
+  setLola(recipe.lolaIntro, 'encouraging');
   speakLola(recipe.lolaIntro);
 
   // Shuffle ingredients + distractors
@@ -1341,7 +1348,7 @@ function onPointerUp(e) {
     el.classList.add('speaking');
     setTimeout(() => el.classList.remove('speaking'), 600);
     pronounceWord(tagalog);
-    setLola(`<span class="lola-tagalog">${tagalog}</span> — ${english}`);
+    setLola(`<span class="lola-tagalog">${tagalog}</span> — ${english}`, 'speaking');
   } else {
     // It was a drag — handle drop
     const clientX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
@@ -1403,7 +1410,7 @@ function handleDrop(el) {
     // Lola says something
     const msg = LOLA_CORRECT[Math.floor(Math.random() * LOLA_CORRECT.length)];
     const ingName = `<span class="lola-tagalog">${ing.tagalog}</span> (${ing.english})`;
-    setLola(`${msg} ${ingName} — tama!`);
+    setLola(`${msg} ${ingName} — tama!`, 'happy');
     speakLola(`${msg} ${ing.tagalog}! Tama!`);
 
     // Check completion
@@ -1418,17 +1425,29 @@ function handleDrop(el) {
     setTimeout(() => el.classList.remove('wrong'), 500);
 
     const msg = LOLA_WRONG[Math.floor(Math.random() * LOLA_WRONG.length)];
-    setLola(msg);
+    setLola(msg, 'thinking');
     speakLola(msg);
   }
 }
 
-function setLola(html) {
+function setLola(html, mood) {
   const bubble = document.getElementById('lolaBubble');
   bubble.innerHTML = html;
   bubble.classList.remove('bounce');
   void bubble.offsetWidth;
   bubble.classList.add('bounce');
+
+  // Swap Lola's avatar based on mood
+  const img = document.getElementById('lolaAvatarImg');
+  if (img) {
+    const moods = {
+      encouraging: 'illustrations/lola-encouraging.png',
+      speaking: 'illustrations/lola-speaking.png',
+      thinking: 'illustrations/lola-thinking.png',
+      happy: 'illustrations/lola-happy.png',
+    };
+    img.src = moods[mood] || moods.encouraging;
+  }
 }
 
 function updateScoreDisplay() {
