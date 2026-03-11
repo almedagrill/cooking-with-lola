@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Cooking with Lola — Learn Tagalog Food Words Through Filipino Recipes</title>
+<meta name="description" content="Cooking with Lola is a free interactive game that teaches 100+ Tagalog food words through 20 authentic Filipino recipes. Learn about all the dishes and vocabulary inside.">
+<meta name="keywords" content="learn Tagalog, Tagalog food words, Filipino cooking game, Tagalog vocabulary, Filipino recipes, learn Filipino, Tagalog for beginners, Filipino food names, Tagalog cooking words, adobo ingredients Tagalog, sinigang ingredients, Filipino dish names, Tagalog kitchen vocabulary">
+<meta name="author" content="Usap">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#FFF3D6">
+<link rel="canonical" href="https://cookwithlola.com/about/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cookwithlola.com/about/">
+<meta property="og:title" content="About Cooking with Lola — 20 Filipino Recipes, 100+ Tagalog Words">
+<meta property="og:description" content="Learn Tagalog food vocabulary through 20 authentic Filipino recipes. Free interactive cooking game guided by Lola.">
+<meta property="og:image" content="https://cookwithlola.com/illustrations/lola-happy.png">
+<meta property="og:site_name" content="Cooking with Lola">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About Cooking with Lola — 20 Filipino Recipes, 100+ Tagalog Words">
+<meta name="twitter:description" content="Learn Tagalog food vocabulary through 20 authentic Filipino recipes. Free game guided by Lola.">
+<meta name="twitter:image" content="https://cookwithlola.com/illustrations/lola-happy.png">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍳</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FFF3D6;
+  --coral: #E8725A;
+  --brown: #3D2C1E;
+  --brown-light: #5a4232;
+  --brown-muted: #8a7560;
+  --border: #f0e4c8;
+  --white-card: #fffdf8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--cream);
+  color: var(--brown);
+}
+
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header */
+.header {
+  padding: 40px 0 32px;
+  text-align: center;
+}
+
+.header-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--coral);
+  text-decoration: none;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+.header-back:hover { text-decoration: underline; }
+
+.header-lockup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.header-lola {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.header-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--brown);
+  line-height: 1.1;
+}
+
+.header-title span { color: var(--coral); }
+
+.header-desc {
+  font-size: 1.1rem;
+  color: var(--brown-light);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--coral);
+  color: white;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 14px 36px;
+  border-radius: 50px;
+  text-decoration: none;
+  margin-top: 24px;
+  box-shadow: 0 4px 16px rgba(232,114,90,0.35);
+  transition: transform 0.2s;
+}
+.play-btn:hover { transform: translateY(-2px); }
+
+/* Sections */
+section {
+  padding: 48px 0;
+}
+
+h2 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: 16px;
+}
+
+h2 span { color: var(--coral); }
+
+p {
+  font-size: 1rem;
+  color: var(--brown-light);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+/* How it works */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.step {
+  background: var(--white-card);
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.step-emoji { font-size: 2rem; margin-bottom: 8px; display: block; }
+
+.step-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: 4px;
+}
+
+.step-desc {
+  font-size: 0.85rem;
+  color: var(--brown-muted);
+  line-height: 1.4;
+}
+
+/* Recipe grid */
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.recipe-item {
+  background: var(--white-card);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.recipe-item-emoji { font-size: 2rem; flex-shrink: 0; }
+
+.recipe-item-name {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--brown);
+}
+
+.recipe-item-desc {
+  font-size: 0.8rem;
+  color: var(--brown-muted);
+  line-height: 1.3;
+}
+
+.recipe-category {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--coral);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+
+/* Word cloud */
+.word-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.word-chip {
+  background: var(--white-card);
+  border: 2px solid var(--border);
+  border-radius: 50px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.word-chip-tl {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  color: var(--brown);
+}
+
+.word-chip-en {
+  color: var(--brown-muted);
+  font-size: 0.8rem;
+}
+
+/* Usap CTA */
+.usap-section {
+  background: var(--white-card);
+  border: 2px solid var(--border);
+  border-radius: 24px;
+  padding: 36px;
+  text-align: center;
+  margin: 16px 0 0;
+}
+
+.usap-section img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+.usap-section .play-btn {
+  background: var(--brown);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 32px 24px 48px;
+  font-size: 13px;
+  color: var(--brown-muted);
+}
+
+footer a {
+  color: var(--coral);
+  text-decoration: none;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .steps { grid-template-columns: 1fr; max-width: 300px; margin: 20px auto 0; }
+  .recipe-grid { grid-template-columns: 1fr; }
+  .header-title { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <a href="/" class="header-back">← Play the Game</a>
+    <div class="header-lockup">
+      <img src="/illustrations/lola-face.gif" alt="Lola" class="header-lola">
+      <h1 class="header-title">Cooking with <span>Lola</span></h1>
+    </div>
+    <p class="header-desc">Learn Tagalog the fun way by cooking authentic Filipino dishes! A free interactive game that teaches you <strong>100+ Tagalog food words</strong> through 20 classic Filipino recipes.</p>
+    <a href="/" class="play-btn">🍳 Start Cooking — Free</a>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="container">
+    <h2>How It <span>Works</span></h2>
+    <p>Lola — your Filipino grandmother guide — walks you through each recipe. Drag the correct Tagalog ingredients into the kawali (wok) to complete each dish. Tap any ingredient to hear its Tagalog pronunciation with a real Filipino voice.</p>
+    <div class="steps">
+      <div class="step">
+        <span class="step-emoji">👆</span>
+        <div class="step-title">Tap to Learn</div>
+        <div class="step-desc">Tap any ingredient to hear Lola pronounce it in Tagalog</div>
+      </div>
+      <div class="step">
+        <span class="step-emoji">🍳</span>
+        <div class="step-title">Drag to Cook</div>
+        <div class="step-desc">Drag the right ingredients into the kawali to cook the dish</div>
+      </div>
+      <div class="step">
+        <span class="step-emoji">📖</span>
+        <div class="step-title">Collect Recipes</div>
+        <div class="step-desc">Build your recipe book and review the words you've learned</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>20 Filipino <span>Recipes</span> to Master</h2>
+    <p>From Adobo to Halo-Halo, cook your way through the most beloved dishes in Filipino cuisine.</p>
+
+    <div class="recipe-category">Ulam — Main Dishes</div>
+    <div class="recipe-grid">
+      <div class="recipe-item"><span class="recipe-item-emoji">🍗</span><div><div class="recipe-item-name">Adobo</div><div class="recipe-item-desc">Soy sauce & vinegar stew</div></div></div>
+      <div class="recipe-item"><span class="recipe-item-emoji">🍲</span><div><div class="recipe-item-name">Sinigang</div><div class="recipe-item-desc">Sour tamarind soup</div></div></div>
+      <div class="recipe-item"><span class="recipe-item-emoji">🍜</span><div><div class="recipe-item-name">Pancit Canton</div><div class="recipe-item-desc">Stir-fried noodles</div></div></div>
+      <div class="recipe-item"><span class="recipe-item-emoji">🍵</span><div><div class="recipe-item-name">Tinola</div><div class="recipe-item-desc">Ginger chicken soup</div></div></div>
+      <div class="recipe-item"><span class="recipe-item-emoji">🥜</span><div><div class="recipe-item-name">Kare-Kare</div><div class="recipe-item-desc">Peanut stew with oxtail</div></div></div>
+      <div class="recipe-item"><span class="recipe-item-emoji">🌯</span><div><div class="recipe-item-name">Lumpia</div><div class="recipe-item-desc">Crispy spring rolls</div></div></div>
+      <div class="recipe-item"><span class="recipe-item-emoji">🥩</span><div><div class="recipe-item-name">Bistek Tagalog</div><div class="recipe-item-desc">Filipino beef steak</div></div></div>
+      <div class="recipe-item"><span class="recipe-item-emoji">🥗</span><div><div class="recipe-item-name">Pinakbet</div><div class="recipe-item-desc">Mixed veggie stew</div></div></div>
+      <div class="recipe-item"><span class="recipe-item-emoji">🌶️</span><div><div class="recipe-item-name">Bicol Express</div><div class="recipe-item-desc">Spicy coconut pork</div></div></div>
+      <div class="recipe-item"><span class="recipe-item-emoji">🫕</span><div><div class="recipe-item-name">Kaldereta</div><div class="recipe-item-desc">Tomato beef stew</div></div></div>
+      <div class="recipe-item"><span class="recipe-item-emoji">🍖</span><div><div class="recipe-item-name">Mechado</div><div class="recipe-item-desc">Braised beef in tomato</div></div></div>
+      <div class="recipe-item"><span class="recipe-item-emoji">🥬</span><div><div class="recipe-item-name">Laing</div><div class="recipe-item-desc">Taro leaves in coconut</div></div></div>
+      <div class="recipe-item"><span class="recipe-item-emoji">🧊</span><div><div class="recipe-item-name">Tokwa't Baboy</div><div class="recipe-item-desc">Tofu & pork in soy vinegar</div></div></div>
+    </div>
+
+    <div class="recipe-category">Sopas — Soups</div>
+    <div class="recipe-grid">
+      <div class="recipe-item"><span class="recipe-item-emoji">🍚</span><div><div class="recipe-item-name">Arroz Caldo</div><div class="recipe-item-desc">Rice porridge with chicken</div></div></div>
+      <div class="recipe-item"><span class="recipe-item-emoji">🦴</span><div><div class="recipe-item-name">Bulalo</div><div class="recipe-item-desc">Bone marrow soup</div></div></div>
+    </div>
+
+    <div class="recipe-category">Merienda — Snacks</div>
+    <div class="recipe-grid">
+      <div class="recipe-item"><span class="recipe-item-emoji">🥣</span><div><div class="recipe-item-name">Lugaw</div><div class="recipe-item-desc">Simple rice porridge</div></div></div>
+      <div class="recipe-item"><span class="recipe-item-emoji">🍌</span><div><div class="recipe-item-name">Turon</div><div class="recipe-item-desc">Banana spring rolls</div></div></div>
+    </div>
+
+    <div class="recipe-category">Panghimagas — Desserts</div>
+    <div class="recipe-grid">
+      <div class="recipe-item"><span class="recipe-item-emoji">🍧</span><div><div class="recipe-item-name">Halo-Halo</div><div class="recipe-item-desc">Shaved ice with toppings</div></div></div>
+      <div class="recipe-item"><span class="recipe-item-emoji">🍮</span><div><div class="recipe-item-name">Leche Flan</div><div class="recipe-item-desc">Caramel egg custard</div></div></div>
+      <div class="recipe-item"><span class="recipe-item-emoji">🍫</span><div><div class="recipe-item-name">Champorado</div><div class="recipe-item-desc">Chocolate rice porridge</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>100+ Tagalog <span>Words</span> You'll Learn</h2>
+    <p>From kitchen basics to exotic ingredients, build your Tagalog food vocabulary one recipe at a time.</p>
+    <div class="word-grid">
+      <span class="word-chip"><span class="word-chip-tl">🍗 Manok</span> <span class="word-chip-en">Chicken</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🧄 Bawang</span> <span class="word-chip-en">Garlic</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🧅 Sibuyas</span> <span class="word-chip-en">Onion</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🍅 Kamatis</span> <span class="word-chip-en">Tomato</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🐖 Baboy</span> <span class="word-chip-en">Pork</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🥩 Baka</span> <span class="word-chip-en">Beef</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🫗 Toyo</span> <span class="word-chip-en">Soy sauce</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🍶 Suka</span> <span class="word-chip-en">Vinegar</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🫚 Luya</span> <span class="word-chip-en">Ginger</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🥥 Gata</span> <span class="word-chip-en">Coconut milk</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🌶️ Sili</span> <span class="word-chip-en">Chili</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🍆 Talong</span> <span class="word-chip-en">Eggplant</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🥔 Patatas</span> <span class="word-chip-en">Potato</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🍚 Bigas</span> <span class="word-chip-en">Rice</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🥚 Itlog</span> <span class="word-chip-en">Egg</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🍌 Saging</span> <span class="word-chip-en">Banana</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🥛 Gatas</span> <span class="word-chip-en">Milk</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🍬 Asukal</span> <span class="word-chip-en">Sugar</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🍫 Tsokolate</span> <span class="word-chip-en">Chocolate</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🫙 Bagoong</span> <span class="word-chip-en">Shrimp paste</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🎃 Kalabasa</span> <span class="word-chip-en">Squash</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🥬 Kangkong</span> <span class="word-chip-en">Water spinach</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🐟 Patis</span> <span class="word-chip-en">Fish sauce</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🍠 Ube</span> <span class="word-chip-en">Purple yam</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🌽 Mais</span> <span class="word-chip-en">Corn</span></span>
+      <span class="word-chip"><span class="word-chip-tl">💧 Tubig</span> <span class="word-chip-en">Water</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🧊 Yelo</span> <span class="word-chip-en">Ice</span></span>
+      <span class="word-chip"><span class="word-chip-tl">🥜 Mani</span> <span class="word-chip-en">Peanut</span></span>
+    </div>
+    <p style="margin-top:20px;text-align:center;font-size:0.9rem;">...and many more across all 20 recipes!</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="usap-section">
+      <img src="/illustrations/lola-happy.png" alt="Lola">
+      <h2>Want to Learn More <span>Tagalog</span>?</h2>
+      <p>Cooking with Lola is made by <strong>Usap</strong> — a complete Tagalog learning app with 250+ words, phrases, real conversations, listening quizzes, and spaced repetition. All guided by Lola.</p>
+      <a href="https://usapwithlola.com?ref=cooking-with-lola-about" class="play-btn" style="background:#E8725A;">Learn Tagalog with Usap →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <a href="/">Play Cooking with Lola</a>
+  <span style="margin:0 8px;">·</span>
+  <a href="https://usapwithlola.com?ref=cooking-with-lola" target="_blank" style="color:#8a7560;">Usap — Learn Tagalog with Lola</a>
+  <div style="margin-top:8px;">&copy; 2026 Usap. Made with love for the Filipino diaspora.</div>
+</footer>
+
+</body>
+</html>
