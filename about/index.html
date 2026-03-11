@@ -131,6 +131,7 @@ h2 {
   font-weight: 700;
   color: var(--brown);
   margin-bottom: 16px;
+  text-align: center;
 }
 
 h2 span { color: var(--coral); }
@@ -140,6 +141,7 @@ p {
   color: var(--brown-light);
   line-height: 1.7;
   margin-bottom: 16px;
+  text-align: center;
 }
 
 /* How it works */
@@ -216,6 +218,7 @@ p {
   letter-spacing: 1px;
   margin-top: 24px;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 /* Word cloud */
@@ -224,6 +227,7 @@ p {
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 16px;
+  justify-content: center;
 }
 
 .word-chip {
@@ -250,12 +254,44 @@ p {
 
 /* Usap CTA */
 .usap-section {
-  background: var(--white-card);
-  border: 2px solid var(--border);
   border-radius: 24px;
   padding: 36px;
   text-align: center;
   margin: 16px 0 0;
+  position: relative;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 8px,
+      rgba(181,148,74,0.07) 8px,
+      rgba(181,148,74,0.07) 10px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 8px,
+      rgba(181,148,74,0.07) 8px,
+      rgba(181,148,74,0.07) 10px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 18px,
+      rgba(232,114,90,0.05) 18px,
+      rgba(232,114,90,0.05) 20px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 18px,
+      rgba(232,114,90,0.05) 18px,
+      rgba(232,114,90,0.05) 20px
+    ),
+    #FFF8EC;
+  border: 2px solid #e8d5b0;
+  box-shadow: 0 4px 20px rgba(61,44,30,0.08);
 }
 
 .usap-section img {
@@ -263,10 +299,17 @@ p {
   height: 72px;
   object-fit: contain;
   margin-bottom: 12px;
+  position: relative;
+}
+
+.usap-section h2,
+.usap-section p,
+.usap-section .play-btn {
+  position: relative;
 }
 
 .usap-section .play-btn {
-  background: var(--brown);
+  background: var(--coral);
 }
 
 /* Newsletter */
@@ -379,7 +422,6 @@ footer a {
 <section>
   <div class="container">
     <h2>How It <span>Works</span></h2>
-    <p>Lola — your Filipino grandmother guide — walks you through each recipe. Drag the correct Tagalog ingredients into the kawali (wok) to complete each dish. Tap any ingredient to hear its Tagalog pronunciation with a real Filipino voice.</p>
     <div class="steps">
       <div class="step">
         <span class="step-emoji">👆</span>
@@ -397,6 +439,7 @@ footer a {
         <div class="step-desc">Build your recipe book and review the words you've learned</div>
       </div>
     </div>
+    <p style="margin-top:20px;">Lola — your Filipino grandmother guide — walks you through each recipe. Drag the correct Tagalog ingredients into the kawali (wok) to complete each dish. Tap any ingredient to hear its Tagalog pronunciation with a real Filipino voice.</p>
   </div>
 </section>
 
@@ -406,7 +449,7 @@ footer a {
       <img src="/illustrations/lola-happy.png" alt="Lola">
       <h2>Want to Learn More <span>Tagalog</span>?</h2>
       <p>Cooking with Lola is made by <strong>Usap</strong> — a complete Tagalog learning app with 250+ words, phrases, real conversations, listening quizzes, and spaced repetition. All guided by Lola.</p>
-      <a href="https://usapwithlola.com?ref=cooking-with-lola-about" class="play-btn" style="background:#E8725A;">Learn Tagalog with Usap →</a>
+      <a href="https://usapwithlola.com?ref=cooking-with-lola-about" class="play-btn">Learn Tagalog with Usap →</a>
     </div>
   </div>
 </section>
