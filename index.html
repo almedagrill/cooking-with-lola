@@ -1696,7 +1696,17 @@ function startGame() {
   const gs = document.getElementById('gameScreen');
   gs.style.display = 'flex';
   gs.style.flexDirection = 'column';
-  loadRecipe(0);
+  localStorage.setItem('lolasKitchen_hasPlayed', '1');
+  const resumeIndex = getNextUncompletedRecipe();
+  loadRecipe(resumeIndex);
+}
+
+function getNextUncompletedRecipe() {
+  const completed = getCompletedRecipes();
+  for (let i = 0; i < RECIPES.length; i++) {
+    if (!completed.includes(RECIPES[i].name)) return i;
+  }
+  return 0; // all done, start over
 }
 
 function loadRecipe(index) {
@@ -2069,8 +2079,8 @@ function showCompletion(recipe) {
 
 function nextRecipe() {
   document.getElementById('completionOverlay').classList.remove('show');
-  const next = (state.currentRecipe + 1) % RECIPES.length;
-  if (next === 0) {
+  const next = getNextUncompletedRecipe();
+  if (next === 0 && getCompletedRecipes().length === RECIPES.length) {
     state.score = 0;
     state.streak = 0;
     updateScoreDisplay();
@@ -2391,6 +2401,11 @@ if (emailForm) {
 
 // Init badge on load
 updateBookBadge();
+
+// Auto-resume if user has played before
+if (localStorage.getItem('lolasKitchen_hasPlayed')) {
+  startGame();
+}
 </script>
 </body>
 </html>
