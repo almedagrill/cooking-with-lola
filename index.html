@@ -996,6 +996,7 @@ body {
 
 <script>
 const RECIPES = [
+  // ===== ULAM (Main Dishes) =====
   {
     name: "Adobo",
     desc: "A savory soy sauce & vinegar stew",
@@ -1095,6 +1096,309 @@ const RECIPES = [
     ],
     lolaIntro: "Kare-Kare! A special fiesta dish — mani at talong, let's go!",
     lolaComplete: "Ay naku, ang galing mo! This Kare-Kare is fiesta-worthy!",
+  },
+  {
+    name: "Lumpia",
+    desc: "Crispy fried spring rolls",
+    emoji: "🌯",
+    ingredients: [
+      { emoji: "🥩", tagalog: "Giniling", english: "Ground meat" },
+      { emoji: "🥕", tagalog: "Karot", english: "Carrot" },
+      { emoji: "🧅", tagalog: "Sibuyas", english: "Onion" },
+      { emoji: "🧄", tagalog: "Bawang", english: "Garlic" },
+      { emoji: "📜", tagalog: "Balat ng Lumpia", english: "Wrapper" },
+    ],
+    distractors: [
+      { emoji: "🍜", tagalog: "Pansit", english: "Noodles" },
+      { emoji: "🍆", tagalog: "Talong", english: "Eggplant" },
+      { emoji: "🥥", tagalog: "Niyog", english: "Coconut" },
+      { emoji: "🫘", tagalog: "Sampalok", english: "Tamarind" },
+    ],
+    lolaIntro: "Lumpia! Every fiesta needs these — balot mo ang ingredients!",
+    lolaComplete: "Ang crispy! Lola's lumpia champion ka na!",
+  },
+  {
+    name: "Bistek Tagalog",
+    desc: "Filipino-style beef steak with onions",
+    emoji: "🥩",
+    ingredients: [
+      { emoji: "🥩", tagalog: "Baka", english: "Beef" },
+      { emoji: "🧅", tagalog: "Sibuyas", english: "Onion" },
+      { emoji: "🫗", tagalog: "Toyo", english: "Soy sauce" },
+      { emoji: "🍋", tagalog: "Kalamansi", english: "Calamansi" },
+      { emoji: "🧈", tagalog: "Mantika", english: "Cooking oil" },
+    ],
+    distractors: [
+      { emoji: "🍶", tagalog: "Suka", english: "Vinegar" },
+      { emoji: "🥥", tagalog: "Niyog", english: "Coconut" },
+      { emoji: "🫚", tagalog: "Luya", english: "Ginger" },
+      { emoji: "🍆", tagalog: "Talong", english: "Eggplant" },
+    ],
+    lolaIntro: "Bistek Tagalog! The sizzle of baka and sibuyas — nakakagutom!",
+    lolaComplete: "Perfect bistek! The kalamansi makes it special, anak!",
+  },
+  {
+    name: "Pinakbet",
+    desc: "Mixed vegetable stew with shrimp paste",
+    emoji: "🥗",
+    ingredients: [
+      { emoji: "🍆", tagalog: "Talong", english: "Eggplant" },
+      { emoji: "🎃", tagalog: "Kalabasa", english: "Squash" },
+      { emoji: "🫘", tagalog: "Sitaw", english: "String beans" },
+      { emoji: "🧄", tagalog: "Bawang", english: "Garlic" },
+      { emoji: "🫙", tagalog: "Bagoong", english: "Shrimp paste" },
+    ],
+    distractors: [
+      { emoji: "🥩", tagalog: "Baka", english: "Beef" },
+      { emoji: "🍶", tagalog: "Suka", english: "Vinegar" },
+      { emoji: "🥜", tagalog: "Mani", english: "Peanut" },
+      { emoji: "🍋", tagalog: "Kalamansi", english: "Calamansi" },
+    ],
+    lolaIntro: "Pinakbet — straight from the Ilocos region! Gulay at bagoong, tara!",
+    lolaComplete: "Masarap! Lola loves a good pinakbet — healthy and delicious!",
+  },
+  {
+    name: "Bicol Express",
+    desc: "Spicy pork in coconut milk & chilies",
+    emoji: "🌶️",
+    ingredients: [
+      { emoji: "🐖", tagalog: "Baboy", english: "Pork" },
+      { emoji: "🥥", tagalog: "Gata", english: "Coconut milk" },
+      { emoji: "🌶️", tagalog: "Sili", english: "Chili" },
+      { emoji: "🧅", tagalog: "Sibuyas", english: "Onion" },
+      { emoji: "🫙", tagalog: "Bagoong", english: "Shrimp paste" },
+    ],
+    distractors: [
+      { emoji: "🫗", tagalog: "Toyo", english: "Soy sauce" },
+      { emoji: "🍅", tagalog: "Kamatis", english: "Tomato" },
+      { emoji: "🫘", tagalog: "Sampalok", english: "Tamarind" },
+      { emoji: "🍗", tagalog: "Manok", english: "Chicken" },
+    ],
+    lolaIntro: "Bicol Express! Maanghang pero masarap — can you handle the sili?",
+    lolaComplete: "Ang anghang! But so good! Lola is fanning her mouth!",
+  },
+  {
+    name: "Kaldereta",
+    desc: "Rich tomato-based beef stew",
+    emoji: "🫕",
+    ingredients: [
+      { emoji: "🥩", tagalog: "Baka", english: "Beef" },
+      { emoji: "🍅", tagalog: "Kamatis", english: "Tomato" },
+      { emoji: "🫑", tagalog: "Atsal", english: "Bell pepper" },
+      { emoji: "🥔", tagalog: "Patatas", english: "Potato" },
+      { emoji: "🍃", tagalog: "Dahon ng Laurel", english: "Bay leaf" },
+    ],
+    distractors: [
+      { emoji: "🥥", tagalog: "Gata", english: "Coconut milk" },
+      { emoji: "🫙", tagalog: "Bagoong", english: "Shrimp paste" },
+      { emoji: "🍤", tagalog: "Hipon", english: "Shrimp" },
+      { emoji: "🫚", tagalog: "Luya", english: "Ginger" },
+    ],
+    lolaIntro: "Kaldereta! A hearty stew for the whole pamilya — baka at patatas!",
+    lolaComplete: "Ang sarap! This kaldereta is fiesta-level, anak!",
+  },
+  {
+    name: "Mechado",
+    desc: "Braised beef in tomato sauce",
+    emoji: "🍖",
+    ingredients: [
+      { emoji: "🥩", tagalog: "Baka", english: "Beef" },
+      { emoji: "🍅", tagalog: "Kamatis", english: "Tomato" },
+      { emoji: "🫗", tagalog: "Toyo", english: "Soy sauce" },
+      { emoji: "🥔", tagalog: "Patatas", english: "Potato" },
+      { emoji: "🧄", tagalog: "Bawang", english: "Garlic" },
+    ],
+    distractors: [
+      { emoji: "🌶️", tagalog: "Sili", english: "Chili" },
+      { emoji: "🥥", tagalog: "Gata", english: "Coconut milk" },
+      { emoji: "🍆", tagalog: "Talong", english: "Eggplant" },
+      { emoji: "🫘", tagalog: "Sitaw", english: "String beans" },
+    ],
+    lolaIntro: "Mechado! Lola's tender baka stew — kamatis at toyo ang secret!",
+    lolaComplete: "So tender! Ganito ang luto ng Lola noon pa man!",
+  },
+  {
+    name: "Laing",
+    desc: "Taro leaves simmered in coconut milk",
+    emoji: "🥬",
+    ingredients: [
+      { emoji: "🥬", tagalog: "Dahon ng Gabi", english: "Taro leaves" },
+      { emoji: "🥥", tagalog: "Gata", english: "Coconut milk" },
+      { emoji: "🌶️", tagalog: "Sili", english: "Chili" },
+      { emoji: "🧅", tagalog: "Sibuyas", english: "Onion" },
+      { emoji: "🧄", tagalog: "Bawang", english: "Garlic" },
+    ],
+    distractors: [
+      { emoji: "🍅", tagalog: "Kamatis", english: "Tomato" },
+      { emoji: "🫗", tagalog: "Toyo", english: "Soy sauce" },
+      { emoji: "🥔", tagalog: "Patatas", english: "Potato" },
+      { emoji: "🍤", tagalog: "Hipon", english: "Shrimp" },
+    ],
+    lolaIntro: "Laing from Bicol! Dahon ng gabi at gata — creamy and spicy!",
+    lolaComplete: "Ay, nakakamiss ang Bicol! Your laing is perfect!",
+  },
+  {
+    name: "Tokwa't Baboy",
+    desc: "Crispy tofu & pork in soy vinegar sauce",
+    emoji: "🧊",
+    ingredients: [
+      { emoji: "🧊", tagalog: "Tokwa", english: "Tofu" },
+      { emoji: "🐖", tagalog: "Baboy", english: "Pork" },
+      { emoji: "🫗", tagalog: "Toyo", english: "Soy sauce" },
+      { emoji: "🍶", tagalog: "Suka", english: "Vinegar" },
+      { emoji: "🧅", tagalog: "Sibuyas", english: "Onion" },
+    ],
+    distractors: [
+      { emoji: "🥥", tagalog: "Gata", english: "Coconut milk" },
+      { emoji: "🍅", tagalog: "Kamatis", english: "Tomato" },
+      { emoji: "🫚", tagalog: "Luya", english: "Ginger" },
+      { emoji: "🎃", tagalog: "Kalabasa", english: "Squash" },
+    ],
+    lolaIntro: "Tokwa't Baboy! Crunchy tokwa at tender baboy — sawsawan time!",
+    lolaComplete: "Crispy and savory! Lola's favorite pulutan!",
+  },
+  // ===== SOPAS (Soups) =====
+  {
+    name: "Arroz Caldo",
+    desc: "Warm rice porridge with chicken & ginger",
+    emoji: "🍚",
+    ingredients: [
+      { emoji: "🍚", tagalog: "Bigas", english: "Rice" },
+      { emoji: "🍗", tagalog: "Manok", english: "Chicken" },
+      { emoji: "🫚", tagalog: "Luya", english: "Ginger" },
+      { emoji: "🧄", tagalog: "Bawang", english: "Garlic" },
+      { emoji: "🧅", tagalog: "Sibuyas", english: "Onion" },
+    ],
+    distractors: [
+      { emoji: "🍶", tagalog: "Suka", english: "Vinegar" },
+      { emoji: "🌶️", tagalog: "Sili", english: "Chili" },
+      { emoji: "🍆", tagalog: "Talong", english: "Eggplant" },
+      { emoji: "🥥", tagalog: "Gata", english: "Coconut milk" },
+    ],
+    lolaIntro: "Arroz Caldo! The best comfort food — lugaw with luya at manok!",
+    lolaComplete: "This will cure anything! Lola's healing soup!",
+  },
+  {
+    name: "Bulalo",
+    desc: "Bone marrow beef soup with corn",
+    emoji: "🦴",
+    ingredients: [
+      { emoji: "🦴", tagalog: "Buto-buto", english: "Bone marrow" },
+      { emoji: "🌽", tagalog: "Mais", english: "Corn" },
+      { emoji: "🥬", tagalog: "Pechay", english: "Bok choy" },
+      { emoji: "🧅", tagalog: "Sibuyas", english: "Onion" },
+      { emoji: "🫑", tagalog: "Paminta", english: "Peppercorn" },
+    ],
+    distractors: [
+      { emoji: "🫗", tagalog: "Toyo", english: "Soy sauce" },
+      { emoji: "🥥", tagalog: "Gata", english: "Coconut milk" },
+      { emoji: "🍅", tagalog: "Kamatis", english: "Tomato" },
+      { emoji: "🌶️", tagalog: "Sili", english: "Chili" },
+    ],
+    lolaIntro: "Bulalo! Perfect for cold Tagaytay nights — buto-buto at mais!",
+    lolaComplete: "The sabaw is so rich! Lola wants another bowl!",
+  },
+  // ===== MERIENDA (Snacks) =====
+  {
+    name: "Lugaw",
+    desc: "Simple rice porridge with toppings",
+    emoji: "🥣",
+    ingredients: [
+      { emoji: "🍚", tagalog: "Bigas", english: "Rice" },
+      { emoji: "🫚", tagalog: "Luya", english: "Ginger" },
+      { emoji: "🧄", tagalog: "Bawang", english: "Garlic" },
+      { emoji: "🐟", tagalog: "Patis", english: "Fish sauce" },
+      { emoji: "🥚", tagalog: "Itlog", english: "Egg" },
+    ],
+    distractors: [
+      { emoji: "🥩", tagalog: "Baka", english: "Beef" },
+      { emoji: "🍆", tagalog: "Talong", english: "Eggplant" },
+      { emoji: "🥥", tagalog: "Niyog", english: "Coconut" },
+      { emoji: "🫘", tagalog: "Sitaw", english: "String beans" },
+    ],
+    lolaIntro: "Lugaw! Simple pero masarap — the perfect merienda, anak!",
+    lolaComplete: "Warm and comforting! Ganito ang merienda ni Lola!",
+  },
+  {
+    name: "Turon",
+    desc: "Banana spring rolls with brown sugar",
+    emoji: "🍌",
+    ingredients: [
+      { emoji: "🍌", tagalog: "Saging", english: "Banana" },
+      { emoji: "🍬", tagalog: "Asukal", english: "Brown sugar" },
+      { emoji: "📜", tagalog: "Balat ng Lumpia", english: "Wrapper" },
+      { emoji: "🧈", tagalog: "Mantika", english: "Cooking oil" },
+      { emoji: "🥜", tagalog: "Langka", english: "Jackfruit" },
+    ],
+    distractors: [
+      { emoji: "🍚", tagalog: "Bigas", english: "Rice" },
+      { emoji: "🥥", tagalog: "Gata", english: "Coconut milk" },
+      { emoji: "🥚", tagalog: "Itlog", english: "Egg" },
+      { emoji: "🫚", tagalog: "Luya", english: "Ginger" },
+    ],
+    lolaIntro: "Turon! Saging at langka wrapped in love — the best merienda!",
+    lolaComplete: "Ang tamis! Lola can't eat just one!",
+  },
+  // ===== PANGHIMAGAS (Desserts) =====
+  {
+    name: "Halo-Halo",
+    desc: "Shaved ice with sweet beans & toppings",
+    emoji: "🍧",
+    ingredients: [
+      { emoji: "🧊", tagalog: "Yelo", english: "Shaved ice" },
+      { emoji: "🥛", tagalog: "Gatas", english: "Milk" },
+      { emoji: "🍠", tagalog: "Ube", english: "Purple yam" },
+      { emoji: "🍮", tagalog: "Leche Flan", english: "Caramel custard" },
+      { emoji: "🍌", tagalog: "Saging", english: "Banana" },
+    ],
+    distractors: [
+      { emoji: "🍅", tagalog: "Kamatis", english: "Tomato" },
+      { emoji: "🧄", tagalog: "Bawang", english: "Garlic" },
+      { emoji: "🐖", tagalog: "Baboy", english: "Pork" },
+      { emoji: "🫗", tagalog: "Toyo", english: "Soy sauce" },
+    ],
+    lolaIntro: "Halo-Halo! Mix it all up — yelo, gatas, ube, everything!",
+    lolaComplete: "Ang lamig at sarap! The best Halo-Halo sa buong mundo!",
+  },
+  {
+    name: "Leche Flan",
+    desc: "Creamy caramel egg custard",
+    emoji: "🍮",
+    ingredients: [
+      { emoji: "🥚", tagalog: "Itlog", english: "Egg" },
+      { emoji: "🥛", tagalog: "Gatas", english: "Milk" },
+      { emoji: "🍬", tagalog: "Asukal", english: "Sugar" },
+      { emoji: "🍋", tagalog: "Dayap", english: "Lime zest" },
+      { emoji: "🫙", tagalog: "Llanera", english: "Mold" },
+    ],
+    distractors: [
+      { emoji: "🍚", tagalog: "Bigas", english: "Rice" },
+      { emoji: "🫚", tagalog: "Luya", english: "Ginger" },
+      { emoji: "🧄", tagalog: "Bawang", english: "Garlic" },
+      { emoji: "🌶️", tagalog: "Sili", english: "Chili" },
+    ],
+    lolaIntro: "Leche Flan! Itlog at gatas — Lola's secret holiday dessert!",
+    lolaComplete: "So smooth and creamy! Lola's best-kept recipe, now yours!",
+  },
+  {
+    name: "Champorado",
+    desc: "Sweet chocolate rice porridge",
+    emoji: "🍫",
+    ingredients: [
+      { emoji: "🍚", tagalog: "Bigas", english: "Rice" },
+      { emoji: "🍫", tagalog: "Tsokolate", english: "Chocolate" },
+      { emoji: "🍬", tagalog: "Asukal", english: "Sugar" },
+      { emoji: "🥛", tagalog: "Gatas", english: "Milk" },
+      { emoji: "💧", tagalog: "Tubig", english: "Water" },
+    ],
+    distractors: [
+      { emoji: "🧄", tagalog: "Bawang", english: "Garlic" },
+      { emoji: "🍶", tagalog: "Suka", english: "Vinegar" },
+      { emoji: "🐖", tagalog: "Baboy", english: "Pork" },
+      { emoji: "🍆", tagalog: "Talong", english: "Eggplant" },
+    ],
+    lolaIntro: "Champorado! Tsokolate at bigas — the sweetest breakfast, anak!",
+    lolaComplete: "Matamis at mainit! Pair it with tuyo — trust Lola!",
   },
 ];
 
@@ -1555,7 +1859,7 @@ function saveCompletedRecipe(recipeName) {
 function updateBookBadge() {
   const count = getCompletedRecipes().length;
   const badge = document.getElementById('bookBadge');
-  if (badge) badge.textContent = count;
+  if (badge) badge.textContent = `${count}/${RECIPES.length}`;
 }
 
 function openRecipeBook() {
@@ -1572,42 +1876,37 @@ function openRecipeBook() {
       </div>
     `;
   } else {
-    RECIPES.forEach(recipe => {
-      const isCompleted = completed.includes(recipe.name);
+    // Only show completed recipes — keep the rest a surprise
+    const completedRecipes = RECIPES.filter(r => completed.includes(r.name));
+    completedRecipes.forEach(recipe => {
       const card = document.createElement('div');
-      card.className = `book-recipe ${isCompleted ? '' : 'book-locked'}`;
+      card.className = 'book-recipe';
 
-      if (isCompleted) {
-        let ingredientsHTML = recipe.ingredients.map(ing =>
-          `<div class="book-ingredient" onclick="pronounceWord('${ing.tagalog.replace(/'/g, "\\'")}')">
-            <span class="bi-tl">${ing.emoji} ${ing.tagalog}</span>
-            <span class="bi-en">${ing.english} <span class="bi-speaker">🔈</span></span>
-          </div>`
-        ).join('');
+      let ingredientsHTML = recipe.ingredients.map(ing =>
+        `<div class="book-ingredient" onclick="pronounceWord('${ing.tagalog.replace(/'/g, "\\'")}')">
+          <span class="bi-tl">${ing.emoji} ${ing.tagalog}</span>
+          <span class="bi-en">${ing.english} <span class="bi-speaker">🔈</span></span>
+        </div>`
+      ).join('');
 
-        card.innerHTML = `
-          <div class="book-recipe-header">
-            <span class="book-recipe-emoji">${recipe.emoji}</span>
-            <div>
-              <div class="book-recipe-name">${recipe.name}</div>
-              <div class="book-recipe-desc">${recipe.desc}</div>
-            </div>
+      card.innerHTML = `
+        <div class="book-recipe-header">
+          <span class="book-recipe-emoji">${recipe.emoji}</span>
+          <div>
+            <div class="book-recipe-name">${recipe.name}</div>
+            <div class="book-recipe-desc">${recipe.desc}</div>
           </div>
-          ${ingredientsHTML}
-        `;
-      } else {
-        card.innerHTML = `
-          <div class="book-recipe-header">
-            <span class="book-recipe-emoji">🔒</span>
-            <div>
-              <div class="book-recipe-name">${recipe.name}</div>
-              <div class="book-recipe-desc">Cook this dish to unlock!</div>
-            </div>
-          </div>
-        `;
-      }
+        </div>
+        ${ingredientsHTML}
+      `;
       content.appendChild(card);
     });
+
+    // Show progress count
+    const progress = document.createElement('div');
+    progress.style.cssText = 'text-align:center;padding:16px 0 4px;font-size:13px;color:#8a7560;';
+    progress.innerHTML = `<span style="font-family:Fredoka,sans-serif;font-weight:700;color:#E8725A;">${completed.length}</span> of <span style="font-family:Fredoka,sans-serif;font-weight:700;color:#3D2C1E;">${RECIPES.length}</span> recipes collected — keep cooking!`;
+    content.appendChild(progress);
   }
 
   document.getElementById('bookOverlay').classList.add('show');
