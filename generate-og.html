@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Generate OG Image</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@700&display=swap" rel="stylesheet">
+<style>
+body { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background: #eee; font-family: sans-serif; gap: 16px; }
+canvas { box-shadow: 0 4px 20px rgba(0,0,0,0.2); border-radius: 8px; }
+button { padding: 12px 32px; font-size: 16px; cursor: pointer; border: none; background: #E8725A; color: white; border-radius: 8px; font-weight: 700; }
+p { color: #666; }
+</style>
+</head>
+<body>
+<p>OG Image Preview (1200 x 630)</p>
+<canvas id="c" width="1200" height="630"></canvas>
+<button onclick="save()">Download PNG</button>
+
+<script>
+const img = new Image();
+img.onload = draw;
+img.src = 'illustrations/lola-happy.png';
+
+function draw() {
+  const c = document.getElementById('c');
+  const ctx = c.getContext('2d');
+  const W = 1200, H = 630;
+
+  // Background
+  ctx.fillStyle = '#FFF3D6';
+  ctx.fillRect(0, 0, W, H);
+
+  // Subtle pattern dots
+  ctx.fillStyle = 'rgba(181,148,74,0.06)';
+  for (let x = 0; x < W; x += 24) {
+    for (let y = 0; y < H; y += 24) {
+      ctx.beginPath();
+      ctx.arc(x, y, 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  // Left side: Lola image
+  const lolaSize = 280;
+  const lolaX = 80;
+  const lolaY = (H - lolaSize) / 2 - 10;
+
+  // Lola circle background
+  ctx.beginPath();
+  ctx.arc(lolaX + lolaSize/2, lolaY + lolaSize/2, lolaSize/2 + 20, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(232,114,90,0.1)';
+  ctx.fill();
+
+  ctx.drawImage(img, lolaX, lolaY, lolaSize, lolaSize);
+
+  // Right side: Text
+  const textX = 420;
+
+  // Title
+  ctx.fillStyle = '#3D2C1E';
+  ctx.font = 'bold 64px Fredoka, sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('Cooking with', textX, 180);
+
+  ctx.fillStyle = '#E8725A';
+  ctx.font = 'bold 72px Fredoka, sans-serif';
+  ctx.fillText('Lola', textX, 255);
+
+  // Subtitle
+  ctx.fillStyle = '#5a4232';
+  ctx.font = '700 26px Nunito, sans-serif';
+  ctx.fillText('Learn Tagalog food words by cooking', textX, 310);
+  ctx.fillText('Filipino dishes with your Lola!', textX, 345);
+
+  // Recipe emojis row
+  const emojis = ['🍗', '🍲', '🍜', '🌯', '🍧', '🍫', '🍮', '🍌'];
+  ctx.font = '44px serif';
+  emojis.forEach((e, i) => {
+    ctx.fillText(e, textX + i * 56, 420);
+  });
+
+  // Stats pills
+  const pillY = 470;
+  const pills = ['20 Recipes', '100+ Words', 'Free'];
+  let pillX = textX;
+  pills.forEach(text => {
+    ctx.font = 'bold 20px Fredoka, sans-serif';
+    const w = ctx.measureText(text).width + 32;
+    // Pill bg
+    ctx.fillStyle = 'white';
+    roundRect(ctx, pillX, pillY, w, 42, 21);
+    ctx.fill();
+    ctx.strokeStyle = '#f0e4c8';
+    ctx.lineWidth = 2;
+    roundRect(ctx, pillX, pillY, w, 42, 21);
+    ctx.stroke();
+    // Pill text
+    ctx.fillStyle = '#3D2C1E';
+    ctx.fillText(text, pillX + 16, pillY + 29);
+    pillX += w + 14;
+  });
+
+  // Bottom bar
+  ctx.fillStyle = '#E8725A';
+  ctx.fillRect(0, H - 6, W, 6);
+
+  // Top bar
+  ctx.fillRect(0, 0, W, 6);
+
+  // Branding bottom right
+  ctx.fillStyle = '#b89a78';
+  ctx.font = '18px Nunito, sans-serif';
+  ctx.textAlign = 'right';
+  ctx.fillText('usapwithlola.com', W - 40, H - 24);
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y);
+  ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+  ctx.lineTo(x+w, y+h-r);
+  ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+  ctx.lineTo(x+r, y+h);
+  ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+  ctx.lineTo(x, y+r);
+  ctx.quadraticCurveTo(x, y, x+r, y);
+  ctx.closePath();
+}
+
+function save() {
+  const c = document.getElementById('c');
+  const a = document.createElement('a');
+  a.download = 'og-image.png';
+  a.href = c.toDataURL('image/png');
+  a.click();
+}
+</script>
+</body>
+</html>

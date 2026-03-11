@@ -941,6 +941,121 @@ body {
 .share-save-btn { background: #E8725A; color: white; }
 .share-close-btn { background: white; color: #3D2C1E; }
 
+/* Email Capture Modal */
+.email-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(61,44,30,0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 150;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.email-overlay.show { opacity: 1; pointer-events: all; }
+
+.email-card {
+  background: white;
+  border-radius: 24px;
+  padding: 32px;
+  text-align: center;
+  max-width: 360px;
+  width: 90%;
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  position: relative;
+}
+.email-overlay.show .email-card { transform: scale(1); }
+
+.email-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #b89a78;
+  cursor: pointer;
+}
+
+.email-lola {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.email-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #3D2C1E;
+  margin-bottom: 4px;
+}
+
+.email-desc {
+  font-size: 13px;
+  color: #8a7560;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.email-form {
+  display: flex;
+  gap: 8px;
+}
+
+.email-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #f0e4c8;
+  border-radius: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.email-input:focus { border-color: #E8725A; }
+
+.email-submit {
+  background: #E8725A;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.15s;
+}
+.email-submit:active { transform: scale(0.96); }
+
+.email-success {
+  display: none;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 16px;
+  color: #5a9e4b;
+  font-weight: 600;
+  padding: 8px 0;
+}
+
+.email-skip {
+  display: block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #b89a78;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: 'Nunito', sans-serif;
+}
+
 /* Usap CTA */
 .usap-footer {
   text-align: center;
@@ -1124,6 +1239,22 @@ body {
   <div class="share-preview-actions">
     <button class="share-save-btn" onclick="saveShareCard()">Save Image</button>
     <button class="share-close-btn" onclick="closeSharePreview()">Close</button>
+  </div>
+</div>
+
+<!-- Email Capture Modal -->
+<div class="email-overlay" id="emailOverlay">
+  <div class="email-card">
+    <button class="email-close" onclick="closeEmailModal()">✕</button>
+    <img src="illustrations/lola-happy.png" alt="Lola" class="email-lola">
+    <div class="email-title">Lola is impressed!</div>
+    <div class="email-desc">You're a natural in the kitchen. Want Lola to send you Tagalog tips, new recipes, and app updates?</div>
+    <form class="email-form" id="emailForm">
+      <input type="email" class="email-input" placeholder="Your email" required>
+      <button type="submit" class="email-submit">Yes!</button>
+    </form>
+    <div class="email-success" id="emailSuccess">Salamat! Check your inbox 🎉</div>
+    <button class="email-skip" onclick="closeEmailModal()">Maybe later</button>
   </div>
 </div>
 
@@ -1960,6 +2091,7 @@ function showCompletion(recipe) {
   document.getElementById('nextBtn').textContent = isLast ? "Cook Again! 🔄" : "Next Dish →";
 
   document.getElementById('completionOverlay').classList.add('show');
+  maybeShowEmailCapture();
 }
 
 function nextRecipe() {
@@ -2208,6 +2340,41 @@ function closeSharePreview() {
 // Save recipe on completion
 const originalShowCompletion = showCompletion;
 // (already handled inline — see showCompletion override below)
+
+// ===== EMAIL CAPTURE =====
+const EMAIL_TRIGGER_COUNT = 3; // Show after completing 3 dishes
+
+function maybeShowEmailCapture() {
+  // Don't show if already subscribed or dismissed
+  if (localStorage.getItem('lolasKitchen_emailDone')) return;
+  const completed = getCompletedRecipes().length;
+  if (completed >= EMAIL_TRIGGER_COUNT) {
+    // Small delay so completion screen shows first
+    setTimeout(() => {
+      document.getElementById('emailOverlay').classList.add('show');
+    }, 1500);
+  }
+}
+
+function closeEmailModal() {
+  document.getElementById('emailOverlay').classList.remove('show');
+  localStorage.setItem('lolasKitchen_emailDone', 'dismissed');
+}
+
+// Beehiiv newsletter form
+const emailForm = document.getElementById('emailForm');
+if (emailForm) {
+  emailForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = emailForm.querySelector('input').value;
+    const url = 'https://magic.beehiiv.com/v1/d927c13b-54a1-4580-b4cf-da99675c28af?email=' + encodeURIComponent(email);
+    window.open(url, '_blank');
+    emailForm.style.display = 'none';
+    document.getElementById('emailSuccess').style.display = 'block';
+    document.querySelector('.email-skip').style.display = 'none';
+    localStorage.setItem('lolasKitchen_emailDone', 'subscribed');
+  });
+}
 
 // Init badge on load
 updateBookBadge();
