@@ -3,7 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Lola's Kitchen 🍳</title>
+<title>Cooking with Lola — Learn Tagalog Food Words Through Filipino Recipes</title>
+<meta name="description" content="Learn 100+ Tagalog food words by cooking Filipino dishes like Adobo, Sinigang, and Halo-Halo in this free interactive game. Guided by Lola, your Filipino grandmother.">
+<meta name="keywords" content="learn Tagalog, Tagalog food words, Filipino cooking game, Tagalog vocabulary, Filipino recipes, learn Filipino, Tagalog for beginners, Filipino food names, Tagalog cooking words, adobo ingredients Tagalog">
+<meta name="author" content="Usap">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#FFF3D6">
+<link rel="canonical" href="https://cooking-with-lola.vercel.app/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cooking-with-lola.vercel.app/">
+<meta property="og:title" content="Cooking with Lola — Learn Tagalog Food Words">
+<meta property="og:description" content="Cook Filipino dishes and learn 100+ Tagalog food words in this free interactive game. Guided by Lola, your Filipino grandmother.">
+<meta property="og:image" content="https://cooking-with-lola.vercel.app/illustrations/lola-happy.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Cooking with Lola">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cooking with Lola — Learn Tagalog Food Words">
+<meta name="twitter:description" content="Cook Filipino dishes and learn 100+ Tagalog food words. Free game guided by Lola, your Filipino grandmother.">
+<meta name="twitter:image" content="https://cooking-with-lola.vercel.app/illustrations/lola-happy.png">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Cooking with Lola",
+  "description": "Learn Tagalog food vocabulary by cooking Filipino dishes in this free interactive game. Features 20 recipes, 100+ Tagalog words, and audio pronunciation.",
+  "url": "https://cooking-with-lola.vercel.app/",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Usap",
+    "url": "https://usapwithlola.com"
+  },
+  "inLanguage": ["en", "tl"],
+  "educationalLevel": "Beginner",
+  "learningResourceType": "Interactive game",
+  "keywords": "Tagalog, Filipino, cooking, vocabulary, language learning, food words"
+}
+</script>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍳</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -890,6 +940,80 @@ body {
 .share-preview-actions button:active { transform: scale(0.96); }
 .share-save-btn { background: #E8725A; color: white; }
 .share-close-btn { background: white; color: #3D2C1E; }
+
+/* Usap CTA */
+.usap-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: #b89a78;
+}
+.usap-footer a {
+  color: #E8725A;
+  text-decoration: none;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+}
+.usap-footer a:hover { text-decoration: underline; }
+
+.usap-cta-banner {
+  background: linear-gradient(135deg, #3D2C1E, #5a4232);
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.usap-cta-banner:active { transform: scale(0.98); }
+.usap-cta-banner-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: contain;
+}
+.usap-cta-banner-text {
+  flex: 1;
+}
+.usap-cta-banner-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFF3D6;
+}
+.usap-cta-banner-desc {
+  font-size: 11px;
+  color: #c4a882;
+  line-height: 1.3;
+}
+.usap-cta-banner-arrow {
+  color: #E8725A;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Noscript fallback / SEO content */
+.seo-content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  position: relative;
+  z-index: 1;
+}
+.seo-content h2 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 20px;
+  color: #3D2C1E;
+  margin: 24px 0 8px;
+}
+.seo-content p, .seo-content li {
+  font-size: 14px;
+  color: #5a4232;
+  line-height: 1.6;
+}
+.seo-content ul { padding-left: 20px; margin: 8px 0; }
 </style>
 </head>
 <body>
@@ -903,6 +1027,7 @@ body {
     <button class="start-btn" onclick="startGame()">Magluto tayo!</button>
     <div class="start-dishes">Let's cook!</div>
     <button class="book-btn" onclick="openRecipeBook()">📖 Recipe Book <span class="badge" id="bookBadge">0</span></button>
+    <div class="usap-footer">A game by <a href="https://usapwithlola.com" target="_blank">Usap — Learn Tagalog with Lola</a></div>
   </div>
 
   <!-- Game Screen (hidden initially) -->
@@ -971,6 +1096,14 @@ body {
       <button class="share-btn" onclick="generateShareCard()">📸 Share</button>
       <button class="next-btn" id="nextBtn" onclick="nextRecipe()">Next Dish →</button>
     </div>
+    <a href="https://usapwithlola.com?ref=cooking-with-lola" target="_blank" class="usap-cta-banner">
+      <img src="illustrations/lola-face.gif" alt="Usap" class="usap-cta-banner-icon">
+      <div class="usap-cta-banner-text">
+        <div class="usap-cta-banner-title">Want to learn more Tagalog?</div>
+        <div class="usap-cta-banner-desc">250+ words, phrases & conversations with Lola</div>
+      </div>
+      <span class="usap-cta-banner-arrow">→</span>
+    </a>
   </div>
 </div>
 
@@ -993,6 +1126,29 @@ body {
     <button class="share-close-btn" onclick="closeSharePreview()">Close</button>
   </div>
 </div>
+
+<!-- SEO content for search engines — visible below the game -->
+<article class="seo-content" id="seoContent">
+  <h1 style="font-family:Fredoka,sans-serif;font-size:24px;color:#3D2C1E;margin-bottom:8px;">Cooking with Lola — Learn Tagalog Food Words</h1>
+  <p>Learn Tagalog the fun way by cooking authentic Filipino dishes! <strong>Cooking with Lola</strong> is a free interactive game that teaches you <strong>100+ Tagalog food vocabulary words</strong> through 20 classic Filipino recipes.</p>
+
+  <h2>How It Works</h2>
+  <p>Lola (grandmother in Tagalog) guides you through each recipe. Drag the correct Tagalog ingredients into the kawali (wok) to cook dishes like Adobo, Sinigang, Lumpia, and Halo-Halo. Tap any ingredient to hear its Tagalog pronunciation.</p>
+
+  <h2>20 Filipino Recipes to Master</h2>
+  <ul>
+    <li><strong>Main Dishes:</strong> Adobo, Sinigang, Pancit Canton, Tinola, Kare-Kare, Lumpia, Bistek Tagalog, Pinakbet, Bicol Express, Kaldereta, Mechado, Laing, Tokwa't Baboy</li>
+    <li><strong>Soups:</strong> Arroz Caldo, Bulalo</li>
+    <li><strong>Snacks:</strong> Lugaw, Turon</li>
+    <li><strong>Desserts:</strong> Halo-Halo, Leche Flan, Champorado</li>
+  </ul>
+
+  <h2>Tagalog Words You'll Learn</h2>
+  <p>Manok (chicken), Bawang (garlic), Toyo (soy sauce), Suka (vinegar), Baboy (pork), Kamatis (tomato), Sibuyas (onion), Kangkong (water spinach), Luya (ginger), Gata (coconut milk), Sili (chili), Talong (eggplant), Baka (beef), Patatas (potato), Bigas (rice), Itlog (egg), Saging (banana), Asukal (sugar), Gatas (milk), Tsokolate (chocolate), and many more.</p>
+
+  <h2>Learn More Tagalog with Usap</h2>
+  <p>Love learning Tagalog? <a href="https://usapwithlola.com">Usap</a> is a complete Tagalog learning app with 250+ words, phrases, conversations, listening quizzes, and spaced repetition — all guided by Lola. <a href="https://usapwithlola.com">Visit usapwithlola.com to learn more →</a></p>
+</article>
 
 <script>
 const RECIPES = [
